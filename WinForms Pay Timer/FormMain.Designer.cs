@@ -33,7 +33,7 @@ partial class FormMain
         buttonTimerPause = new Button();
         buttonTimerReset = new Button();
         labelTimerDisplay = new Label();
-        listViewTimeWorkedLog = new ListView();
+        listViewTimeCards = new ListView();
         buttonTimerComplete = new Button();
         timerUpdateTimerText = new System.Windows.Forms.Timer(components);
         buttonStartNewJob = new Button();
@@ -41,6 +41,7 @@ partial class FormMain
         // 
         // buttonTimerStart
         // 
+        buttonTimerStart.Enabled = false;
         buttonTimerStart.Location = new Point(10, 51);
         buttonTimerStart.Name = "buttonTimerStart";
         buttonTimerStart.Size = new Size(75, 23);
@@ -51,7 +52,8 @@ partial class FormMain
         // 
         // buttonTimerPause
         // 
-        buttonTimerPause.Location = new Point(105, 51);
+        buttonTimerPause.Enabled = false;
+        buttonTimerPause.Location = new Point(142, 51);
         buttonTimerPause.Name = "buttonTimerPause";
         buttonTimerPause.Size = new Size(75, 23);
         buttonTimerPause.TabIndex = 5;
@@ -61,7 +63,8 @@ partial class FormMain
         // 
         // buttonTimerReset
         // 
-        buttonTimerReset.Location = new Point(203, 98);
+        buttonTimerReset.Enabled = false;
+        buttonTimerReset.Location = new Point(406, 51);
         buttonTimerReset.Name = "buttonTimerReset";
         buttonTimerReset.Size = new Size(75, 23);
         buttonTimerReset.TabIndex = 6;
@@ -72,23 +75,24 @@ partial class FormMain
         // 
         labelTimerDisplay.AutoSize = true;
         labelTimerDisplay.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        labelTimerDisplay.Location = new Point(88, 91);
+        labelTimerDisplay.Location = new Point(191, 93);
         labelTimerDisplay.Name = "labelTimerDisplay";
         labelTimerDisplay.Size = new Size(113, 35);
         labelTimerDisplay.TabIndex = 7;
         labelTimerDisplay.Text = "00:00:00";
         // 
-        // listViewTimeWorkedLog
+        // listViewTimeCards
         // 
-        listViewTimeWorkedLog.Location = new Point(10, 161);
-        listViewTimeWorkedLog.Name = "listViewTimeWorkedLog";
-        listViewTimeWorkedLog.Size = new Size(264, 97);
-        listViewTimeWorkedLog.TabIndex = 8;
-        listViewTimeWorkedLog.UseCompatibleStateImageBehavior = false;
+        listViewTimeCards.Location = new Point(10, 161);
+        listViewTimeCards.Name = "listViewTimeCards";
+        listViewTimeCards.Size = new Size(473, 123);
+        listViewTimeCards.TabIndex = 8;
+        listViewTimeCards.UseCompatibleStateImageBehavior = false;
         // 
         // buttonTimerComplete
         // 
-        buttonTimerComplete.Location = new Point(203, 51);
+        buttonTimerComplete.Enabled = false;
+        buttonTimerComplete.Location = new Point(274, 51);
         buttonTimerComplete.Name = "buttonTimerComplete";
         buttonTimerComplete.Size = new Size(75, 23);
         buttonTimerComplete.TabIndex = 9;
@@ -102,7 +106,7 @@ partial class FormMain
         // 
         // buttonStartNewJob
         // 
-        buttonStartNewJob.Location = new Point(90, 12);
+        buttonStartNewJob.Location = new Point(193, 12);
         buttonStartNewJob.Name = "buttonStartNewJob";
         buttonStartNewJob.Size = new Size(104, 23);
         buttonStartNewJob.TabIndex = 10;
@@ -114,10 +118,10 @@ partial class FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(288, 296);
+        ClientSize = new Size(495, 296);
         Controls.Add(buttonStartNewJob);
         Controls.Add(buttonTimerComplete);
-        Controls.Add(listViewTimeWorkedLog);
+        Controls.Add(listViewTimeCards);
         Controls.Add(labelTimerDisplay);
         Controls.Add(buttonTimerReset);
         Controls.Add(buttonTimerPause);
@@ -134,7 +138,7 @@ partial class FormMain
     private Button buttonTimerPause;
     private Button buttonTimerReset;
     private Label labelTimerDisplay;
-    private ListView listViewTimeWorkedLog;
+    private ListView listViewTimeCards;
     private Button buttonTimerComplete;
     private System.Windows.Forms.Timer timerUpdateTimerText;
     private Button buttonStartNewJob;
