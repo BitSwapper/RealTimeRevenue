@@ -37,6 +37,7 @@ partial class FormMain
         buttonTimerComplete = new Button();
         timerUpdateTimerText = new System.Windows.Forms.Timer(components);
         buttonStartNewJob = new Button();
+        labelMoneyEarned = new Label();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -80,6 +81,7 @@ partial class FormMain
         labelTimerDisplay.Size = new Size(113, 35);
         labelTimerDisplay.TabIndex = 7;
         labelTimerDisplay.Text = "00:00:00";
+        labelTimerDisplay.TextAlign = ContentAlignment.TopCenter;
         // 
         // listViewTimeCards
         // 
@@ -114,11 +116,24 @@ partial class FormMain
         buttonStartNewJob.UseVisualStyleBackColor = true;
         buttonStartNewJob.Click += buttonStartNewJob_Click;
         // 
+        // labelMoneyEarned
+        // 
+        labelMoneyEarned.AutoSize = true;
+        labelMoneyEarned.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        labelMoneyEarned.ForeColor = Color.Green;
+        labelMoneyEarned.Location = new Point(206, 123);
+        labelMoneyEarned.Name = "labelMoneyEarned";
+        labelMoneyEarned.Size = new Size(78, 35);
+        labelMoneyEarned.TabIndex = 11;
+        labelMoneyEarned.Text = "$0.00";
+        labelMoneyEarned.TextAlign = ContentAlignment.TopCenter;
+        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(495, 296);
+        Controls.Add(labelMoneyEarned);
         Controls.Add(buttonStartNewJob);
         Controls.Add(buttonTimerComplete);
         Controls.Add(listViewTimeCards);
@@ -142,4 +157,5 @@ partial class FormMain
     private Button buttonTimerComplete;
     private System.Windows.Forms.Timer timerUpdateTimerText;
     private Button buttonStartNewJob;
+    private Label labelMoneyEarned;
 }

@@ -7,15 +7,12 @@ public partial class FormMain : Form
 
     TimeCard currentJobTimeCard;
     List<TimeCard> timeCards = new();
-    public FormMain()
-    {
-        InitializeComponent();
-    }
+    public FormMain() => InitializeComponent();
 
-    private void FormMain_Load(object sender, EventArgs e)
+    void FormMain_Load(object sender, EventArgs e)
     {
-        listViewTimeCards.View = View.Details; // Enable the grid lines and column headers
-        listViewTimeCards.GridLines = true; // Show grid lines
+        listViewTimeCards.View = View.Details;
+        listViewTimeCards.GridLines = true;
         listViewTimeCards.FullRowSelect = true;
 
         listViewTimeCards.Columns.Add("Project Name", 120);
@@ -24,7 +21,7 @@ public partial class FormMain : Form
         listViewTimeCards.Columns.Add("Money Earned", 100);
     }
 
-    private void buttonTimerStart_Click(object sender, EventArgs e)
+    void buttonTimerStart_Click(object sender, EventArgs e)
     {
         timerStartTime = DateTime.Now;
         timerUpdateTimerText.Start();
@@ -32,12 +29,13 @@ public partial class FormMain : Form
         buttonTimerPause.Enabled = true;
     }
 
-    private void timerUpdateTimerText_Tick(object sender, EventArgs e)
+    void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
-        labelTimerDisplay.Text = $"{(int)elapsedTime.TotalHours}:{(int)elapsedTime.TotalMinutes}{elapsedTime.TotalSeconds.ToString("F2")}";
+        labelTimerDisplay.Text = $"{((int)elapsedTime.TotalHours).ToString("D2")}:{((int)elapsedTime.TotalMinutes % 60).ToString("D2")}:{(elapsedTime.TotalSeconds % 60).ToString("00")}";
+        labelMoneyEarned.Text = "$" + (timeCards.Sum((t) => t.MoneyEarned) + currentJobTimeCard.HourlyRate * (decimal)elapsedTime.TotalHours).ToString("F2");
     }
 
-    private void buttonTimerPause_Click(object sender, EventArgs e)
+    void buttonTimerPause_Click(object sender, EventArgs e)
     {
         buttonTimerStart.Enabled = true;
         buttonTimerPause.Enabled = false;
@@ -45,25 +43,18 @@ public partial class FormMain : Form
         timerUpdateTimerText.Stop();
         currentJobTimeCard.TimeSpentWorking += elapsedTime;
 
-        // Check if the TimeCard already exists
         var existingTimeCard = timeCards.FirstOrDefault(tc => tc.ProjectName == currentJobTimeCard.ProjectName);
         if(existingTimeCard != null)
-        {
-            // Update existing TimeCard
             existingTimeCard.TimeSpentWorking = currentJobTimeCard.TimeSpentWorking;
-        }
         else
-        {
-            // Add new TimeCard to the list
             timeCards.Add(currentJobTimeCard);
-        }
 
         RefreshListView();
     }
 
-    private void RefreshListView()
+    void RefreshListView()
     {
-        listViewTimeCards.Items.Clear(); // Clear existing items
+        listViewTimeCards.Items.Clear();
 
         foreach(var timeCard in timeCards)
         {
@@ -71,15 +62,13 @@ public partial class FormMain : Form
             timeCard.ProjectName,
             timeCard.HourlyRate.ToString("F2"),
             timeCard.TimeSpentWorking.ToString(),
-            timeCard.MoneyEarned.ToString("F2")
-        });
+            timeCard.MoneyEarned.ToString("F2")});
 
-            listViewTimeCards.Items.Add(listViewItem); // Add new ListViewItem to the ListView
+            listViewTimeCards.Items.Add(listViewItem);
         }
     }
 
-
-    private void buttonStartNewJob_Click(object sender, EventArgs e)
+    void buttonStartNewJob_Click(object sender, EventArgs e)
     {
         using(var jobStartedForm = new JobStarter())
         {
@@ -99,13 +88,3 @@ public partial class FormMain : Form
         }
     }
 }
-
-public class TimeCard
-{
-    public decimal HourlyRate { get; set; }
-    public string ProjectName { get; set; }
-    public TimeSpan TimeSpentWorking { get; set; } = new();
-    public decimal MoneyEarned => HourlyRate * (decimal)TimeSpentWorking.TotalHours;
-}
-
-
