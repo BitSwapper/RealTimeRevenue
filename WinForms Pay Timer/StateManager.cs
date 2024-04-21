@@ -26,6 +26,8 @@ public class StateManager
         concreteStates[currentState].EnterState(this);
     }
 
+    public void UpdateState() => concreteStates[currentState].UpdateState(this);
+
     public void Initialize() => concreteStates[currentState].EnterState(this);
 }
 
@@ -40,10 +42,8 @@ public class State_Started : BaseState<StateManager>
         stateManager.form.ButtonStartNewJob.Enabled = false;
         stateManager.form.ButtonTimerComplete.Enabled = true;
         stateManager.form.ButtonTimerReset.Enabled = true;
-        stateManager.form.ButtonCancelJob.Enabled = true;
     }
     public override void ExitState(StateManager stateManager) { }
-    public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }
 
@@ -62,7 +62,6 @@ public class State_Paused : BaseState<StateManager>
         stateManager.form.RefreshListView();
     }
     public override void ExitState(StateManager stateManager) { }
-    public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }
 
@@ -72,18 +71,19 @@ public class State_Completed : BaseState<StateManager>
     {
         stateManager.form.ButtonTimerPause.PerformClick();
 
-
         stateManager.form.TimerUpdateTimerText.Stop();
-
         stateManager.form.ButtonStartNewJob.Enabled = true;
         stateManager.form.ButtonTimerPause.Enabled = false;
         stateManager.form.ButtonTimerReset.Enabled = false;
         stateManager.form.ButtonTimerStart.Enabled = false;
         stateManager.form.ButtonTimerComplete.Enabled = false;
-        stateManager.form.ButtonCancelJob.Enabled = false;
 
         stateManager.form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
         stateManager.form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
+
+        var filteredJobs = stateManager.form.TimeCardsThisJob.Where((t) => t.TimeSpentWorking.TotalMilliseconds > 100).ToList();
+
+        if(filteredJobs.Count == 0) return;
 
         var combinedTimeCard = new TimeCard
         {
@@ -109,15 +109,27 @@ public class State_Completed : BaseState<StateManager>
         stateManager.form.CurrentJobTimeCard = new();
     }
     public override void ExitState(StateManager stateManager) { }
-    public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }
 
 public class State_Reset : BaseState<StateManager>
 {
-    public override void EnterState(StateManager stateManager) { }
+    public override void EnterState(StateManager stateManager)
+    {
+
+        stateManager.form.TimerUpdateTimerText.Stop();
+        stateManager.form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
+        stateManager.form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
+        stateManager.form.LabelGrandTotal.Text = FormMainConstants.DefaultValueForMoneyDisplay;
+
+        stateManager.form.TimeCardsThisJob.Clear();
+        stateManager.form.ListViewTimeCards.Clear();
+
+        stateManager.form.CurrentJobTimeCard = new();
+        stateManager.form.TimerStartTime = DateTime.Now;
+        stateManager.SwapState(StateManager.States.Completed);
+    }
     public override void ExitState(StateManager stateManager) { }
-    public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }
 
@@ -142,7 +154,6 @@ public class State_InitNewJob : BaseState<StateManager>
         }
     }
     public override void ExitState(StateManager stateManager) { }
-    public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }
 
@@ -169,6 +180,5 @@ public class State_InitProgram : BaseState<StateManager>
         stateManager.form.ListViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
     }
     public override void ExitState(StateManager stateManager) { }
-    public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }

@@ -40,13 +40,12 @@ partial class FormMain
         labelMoneyEarned = new Label();
         listViewCompletedJobs = new ListView();
         labelGrandTotal = new Label();
-        buttonCancelJob = new Button();
         SuspendLayout();
         // 
         // buttonTimerStart
         // 
         buttonTimerStart.Enabled = false;
-        buttonTimerStart.Location = new Point(122, 78);
+        buttonTimerStart.Location = new Point(125, 46);
         buttonTimerStart.Name = "buttonTimerStart";
         buttonTimerStart.Size = new Size(75, 23);
         buttonTimerStart.TabIndex = 4;
@@ -57,7 +56,7 @@ partial class FormMain
         // buttonTimerPause
         // 
         buttonTimerPause.Enabled = false;
-        buttonTimerPause.Location = new Point(203, 78);
+        buttonTimerPause.Location = new Point(235, 46);
         buttonTimerPause.Name = "buttonTimerPause";
         buttonTimerPause.Size = new Size(75, 23);
         buttonTimerPause.TabIndex = 5;
@@ -68,18 +67,19 @@ partial class FormMain
         // buttonTimerReset
         // 
         buttonTimerReset.Enabled = false;
-        buttonTimerReset.Location = new Point(365, 78);
+        buttonTimerReset.Location = new Point(455, 46);
         buttonTimerReset.Name = "buttonTimerReset";
         buttonTimerReset.Size = new Size(75, 23);
         buttonTimerReset.TabIndex = 6;
         buttonTimerReset.Text = "Reset";
         buttonTimerReset.UseVisualStyleBackColor = true;
+        buttonTimerReset.Click += buttonTimerReset_Click;
         // 
         // labelTimerDisplay
         // 
         labelTimerDisplay.AutoSize = true;
         labelTimerDisplay.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        labelTimerDisplay.Location = new Point(12, 41);
+        labelTimerDisplay.Location = new Point(14, 9);
         labelTimerDisplay.Name = "labelTimerDisplay";
         labelTimerDisplay.Size = new Size(113, 35);
         labelTimerDisplay.TabIndex = 7;
@@ -88,7 +88,7 @@ partial class FormMain
         // 
         // listViewTimeCards
         // 
-        listViewTimeCards.Location = new Point(10, 107);
+        listViewTimeCards.Location = new Point(12, 75);
         listViewTimeCards.Name = "listViewTimeCards";
         listViewTimeCards.Size = new Size(608, 123);
         listViewTimeCards.TabIndex = 8;
@@ -97,7 +97,7 @@ partial class FormMain
         // buttonTimerComplete
         // 
         buttonTimerComplete.Enabled = false;
-        buttonTimerComplete.Location = new Point(284, 78);
+        buttonTimerComplete.Location = new Point(345, 46);
         buttonTimerComplete.Name = "buttonTimerComplete";
         buttonTimerComplete.Size = new Size(75, 23);
         buttonTimerComplete.TabIndex = 9;
@@ -112,7 +112,7 @@ partial class FormMain
         // 
         // buttonStartNewJob
         // 
-        buttonStartNewJob.Location = new Point(10, 12);
+        buttonStartNewJob.Location = new Point(271, 12);
         buttonStartNewJob.Name = "buttonStartNewJob";
         buttonStartNewJob.Size = new Size(104, 23);
         buttonStartNewJob.TabIndex = 10;
@@ -125,7 +125,7 @@ partial class FormMain
         labelMoneyEarned.AutoSize = true;
         labelMoneyEarned.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         labelMoneyEarned.ForeColor = Color.Green;
-        labelMoneyEarned.Location = new Point(12, 69);
+        labelMoneyEarned.Location = new Point(14, 37);
         labelMoneyEarned.Name = "labelMoneyEarned";
         labelMoneyEarned.Size = new Size(78, 35);
         labelMoneyEarned.TabIndex = 11;
@@ -134,7 +134,7 @@ partial class FormMain
         // 
         // listViewCompletedJobs
         // 
-        listViewCompletedJobs.Location = new Point(10, 234);
+        listViewCompletedJobs.Location = new Point(12, 202);
         listViewCompletedJobs.Name = "listViewCompletedJobs";
         listViewCompletedJobs.Size = new Size(608, 123);
         listViewCompletedJobs.TabIndex = 12;
@@ -145,29 +145,18 @@ partial class FormMain
         labelGrandTotal.AutoSize = true;
         labelGrandTotal.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         labelGrandTotal.ForeColor = Color.Green;
-        labelGrandTotal.Location = new Point(540, 69);
+        labelGrandTotal.Location = new Point(542, 37);
         labelGrandTotal.Name = "labelGrandTotal";
         labelGrandTotal.Size = new Size(78, 35);
         labelGrandTotal.TabIndex = 13;
         labelGrandTotal.Text = "$0.00";
         labelGrandTotal.TextAlign = ContentAlignment.MiddleRight;
         // 
-        // buttonCancelJob
-        // 
-        buttonCancelJob.Enabled = false;
-        buttonCancelJob.Location = new Point(446, 78);
-        buttonCancelJob.Name = "buttonCancelJob";
-        buttonCancelJob.Size = new Size(75, 23);
-        buttonCancelJob.TabIndex = 14;
-        buttonCancelJob.Text = "Cancel Job";
-        buttonCancelJob.UseVisualStyleBackColor = true;
-        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(637, 367);
-        Controls.Add(buttonCancelJob);
+        ClientSize = new Size(637, 343);
         Controls.Add(labelGrandTotal);
         Controls.Add(listViewCompletedJobs);
         Controls.Add(labelMoneyEarned);
@@ -197,5 +186,4 @@ partial class FormMain
     Label labelMoneyEarned;
     ListView listViewCompletedJobs;
     Label labelGrandTotal;
-    Button buttonCancelJob;
 }

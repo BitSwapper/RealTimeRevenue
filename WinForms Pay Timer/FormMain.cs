@@ -18,9 +18,9 @@ public partial class FormMain : Form
     public Button ButtonStartNewJob => buttonStartNewJob;
     public Button ButtonTimerComplete => buttonTimerComplete;
     public Button ButtonTimerReset => buttonTimerReset;
-    public Button ButtonCancelJob => buttonCancelJob;
     public Label LabelMoneyEarned => labelMoneyEarned;
     public Label LabelTimerDisplay => labelTimerDisplay;
+    public Label LabelGrandTotal => labelGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewTimeCards => listViewTimeCards;
 
@@ -39,6 +39,12 @@ public partial class FormMain : Form
     void buttonStartNewJob_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.InitNewJob);
 
     void buttonTimerComplete_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Completed);
+
+    private void buttonTimerReset_Click(object sender, EventArgs e)
+    {
+        if(MessageBox.Show("You are about to reset the timer for the current job! Current time will be lost.", "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            stateManager.SwapState(StateManager.States.Reset);
+    }
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
