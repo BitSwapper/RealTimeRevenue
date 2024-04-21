@@ -2,15 +2,19 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace WinForms_Pay_Timer;
 
-public partial class FormMain : Form
+public class TimeKeeper
 {
-    StateManager stateManager;
     public DateTime TimerStartTime { get; set; }
     public TimeSpan ElapsedTime => DateTime.Now - TimerStartTime;
-
     public TimeCard CurrentJobTimeCard { get; set; }
     public List<TimeCard> TimeCardsThisJob { get; set; } = new();
     public List<TimeCard> TimeCardsCompletedJobs { get; set; } = new();
+}
+
+public partial class FormMain : Form
+{
+    StateManager stateManager;
+    public TimeKeeper TimeKeeper { get; } = new();
 
     public Timer TimerUpdateTimerText => timerUpdateTimerText;
     public Button ButtonTimerStart => buttonTimerStart;
@@ -24,13 +28,15 @@ public partial class FormMain : Form
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewTimeCards => listViewTimeCards;
 
-
     public FormMain() => InitializeComponent();
+
     void FormMain_Load(object sender, EventArgs e)
     {
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
     }
+
+    void timerUpdateTimerText_Tick(object sender, EventArgs e) => stateManager.UpdateState();
 
     void buttonTimerStart_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Started);
 
@@ -40,30 +46,25 @@ public partial class FormMain : Form
 
     void buttonTimerComplete_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Completed);
 
-    private void buttonTimerReset_Click(object sender, EventArgs e)
+    void buttonTimerReset_Click(object sender, EventArgs e)
     {
-        if(MessageBox.Show("You are about to reset the timer for the current job! Current time will be lost.", "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
+        if(MessageBox.Show(FormMainConstants.MsgResetTimerWarning, "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
             stateManager.SwapState(StateManager.States.Reset);
-    }
-
-    void timerUpdateTimerText_Tick(object sender, EventArgs e)
-    {
-        stateManager.UpdateState();
     }
 
     public TimeCard CreateTimecardForCurJob() => new TimeCard
     {
-        ProjectName = CurrentJobTimeCard.ProjectName,
-        HourlyRate = CurrentJobTimeCard.HourlyRate,
-        TimeSpentWorking = ElapsedTime,
-        StartTime = TimerStartTime,
+        ProjectName = TimeKeeper.CurrentJobTimeCard.ProjectName,
+        HourlyRate = TimeKeeper.CurrentJobTimeCard.HourlyRate,
+        TimeSpentWorking = TimeKeeper.ElapsedTime,
+        StartTime = TimeKeeper.TimerStartTime,
         StopTime = DateTime.Now
     };
 
     public void RefreshListView()
     {
         listViewTimeCards.Items.Clear();
-        foreach(var timeCard in TimeCardsThisJob.OrderByDescending(tc => tc.StopTime))
+        foreach(var timeCard in TimeKeeper.TimeCardsThisJob.OrderByDescending(tc => tc.StopTime))
         {
             var listViewItem = new ListViewItem(new[]
             {
