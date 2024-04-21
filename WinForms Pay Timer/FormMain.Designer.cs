@@ -226,6 +226,6 @@ partial class FormMain
     Label labelMoneyEarned;
     ListView listViewCompletedJobs;
     Label labelMoneyGrandTotal;
-    private Label label1;
-    private ComboBox comboBox1;
+    Label label1;
+    ComboBox comboBox1;
 }

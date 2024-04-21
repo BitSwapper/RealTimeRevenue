@@ -19,7 +19,7 @@ public class State_Completed : BaseState<StateManager>
 
         var filteredJobs = stateManager.Form.TimeKeeper.TimeCardsThisJob.Where((t) => t.TimeSpentWorking.TotalMilliseconds > 100).ToList();
 
-        if (filteredJobs.Count == 0) return;
+        if(filteredJobs.Count == 0) return;
 
         var combinedTimeCard = new TimeCard
         {

@@ -1,6 +1,7 @@
 using WinForms_Pay_Timer.ColorManagement;
 using WinForms_Pay_Timer.StateManagement;
 using WinForms_Pay_Timer.TimeManagement;
+using static WinForms_Pay_Timer.ColorManagement.ColorThemeManager;
 using Timer = System.Windows.Forms.Timer;
 
 namespace WinForms_Pay_Timer;
@@ -20,24 +21,27 @@ public partial class FormMain : Form
     public Label LabelGrandTotal => labelMoneyGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewCurrentJobTimeCards => listViewTimeCards;
+    bool initd = false;
 
     public FormMain() => InitializeComponent();
 
     void FormMain_Load(object sender, EventArgs e)
     {
-        ColorTheme.InitColors(this);
+        ColorThemeManager.InitColors(this);
 
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
+        comboBox1.DataSource = Enum.GetValues(typeof(ThemeMode));
+        comboBox1.SelectedIndex = Properties.Settings.Default.ColorThemeOption;
+        initd = true;
     }
-
-
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
         stateManager.UpdateState();
         this.Text = "WinForms Pay Timer | " + stateManager.CurrentState.ToString();
     }
+
     void buttonTimerStart_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Started);
 
     void buttonTimerPause_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Paused);
@@ -78,7 +82,7 @@ public partial class FormMain : Form
         }
     }
 
-    private static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
+    static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
                 {
                 timeCard.ProjectName,
                 timeCard.MoneyEarned.ToString("F2"),
@@ -88,13 +92,11 @@ public partial class FormMain : Form
                 timeCard.StopTime.ToString("HH:mm:ss")
             });
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if(comboBox1.SelectedIndex == 0)
-            Properties.Settings.Default.UseDarkMode = false;
-        else
-            Properties.Settings.Default.UseDarkMode = true;
-
-        ColorTheme.InitColors(this);
+        if(!initd) return;
+        Properties.Settings.Default.ColorThemeOption = comboBox1.SelectedIndex;
+        Properties.Settings.Default.Save();
+        ColorThemeManager.InitColors(this);
     }
 }

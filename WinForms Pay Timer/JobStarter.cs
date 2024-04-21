@@ -20,8 +20,5 @@ public partial class JobStarter : Form
         this.Close();
     }
 
-    private void JobStarter_Load(object sender, EventArgs e)
-    {
-        ColorTheme.InitColors(this);
-    }
+    void JobStarter_Load(object sender, EventArgs e) => ColorThemeManager.InitColors(this);
 }

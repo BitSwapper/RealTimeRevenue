@@ -4,9 +4,9 @@ public class State_InitNewJob : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager)
     {
-        using (var jobStartedForm = new JobStarter())
+        using(var jobStartedForm = new JobStarter())
         {
-            if (jobStartedForm.ShowDialog() == DialogResult.OK)
+            if(jobStartedForm.ShowDialog() == DialogResult.OK)
             {
                 decimal hourlyRate = jobStartedForm.HourlyRate;
                 string projectName = jobStartedForm.ProjectName;
