@@ -34,7 +34,7 @@ public class State_Completed : BaseState<StateManager>
 
         static TimeCard GetTotalJobCombinedTimeCard(StateManager stateManager) => new TimeCard
         {
-            ProjectName = stateManager.Form.TimeKeeper.TimeCardsThisJob.First().ProjectName,
+            JobName = stateManager.Form.TimeKeeper.TimeCardsThisJob.First().JobName,
             HourlyRate = stateManager.Form.TimeKeeper.TimeCardsThisJob.First().HourlyRate,
             TimeSpentWorking = TimeSpan.FromTicks(stateManager.Form.TimeKeeper.TimeCardsThisJob.Sum(tc => tc.TimeSpentWorking.Ticks)),
             StartTime = stateManager.Form.TimeKeeper.TimeCardsThisJob.Min(tc => tc.StartTime),
@@ -42,7 +42,7 @@ public class State_Completed : BaseState<StateManager>
         };
 
         static ListViewItem GetLviForTimeCard(TimeCard combinedTimeCard) => new ListViewItem(new[] {
-        combinedTimeCard.ProjectName,
+        combinedTimeCard.JobName,
         combinedTimeCard.MoneyEarned.ToString("F2"),
         combinedTimeCard.HourlyRate.ToString("F2"),
         TimeUtil.FormatTime(combinedTimeCard.TimeSpentWorking),});

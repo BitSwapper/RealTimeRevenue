@@ -45,6 +45,7 @@ partial class FormMain
         comboBox1 = new ComboBox();
         linkLabel1 = new LinkLabel();
         linkLabelDonate = new LinkLabel();
+        label2 = new Label();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -93,7 +94,7 @@ partial class FormMain
         // 
         labelTimerDisplay.AutoSize = true;
         labelTimerDisplay.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        labelTimerDisplay.Location = new Point(13, 7);
+        labelTimerDisplay.Location = new Point(13, 0);
         labelTimerDisplay.Name = "labelTimerDisplay";
         labelTimerDisplay.Size = new Size(113, 35);
         labelTimerDisplay.TabIndex = 7;
@@ -217,11 +218,21 @@ partial class FormMain
         linkLabelDonate.Text = "Donate";
         linkLabelDonate.LinkClicked += linkLabelDonate_LinkClicked;
         // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(19, 39);
+        label2.Name = "label2";
+        label2.Size = new Size(49, 15);
+        label2.TabIndex = 19;
+        label2.Text = "This Job";
+        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(496, 358);
+        Controls.Add(label2);
         Controls.Add(linkLabelDonate);
         Controls.Add(linkLabel1);
         Controls.Add(comboBox1);
@@ -262,4 +273,5 @@ partial class FormMain
     ComboBox comboBox1;
     LinkLabel linkLabel1;
     private LinkLabel linkLabelDonate;
+    private Label label2;
 }

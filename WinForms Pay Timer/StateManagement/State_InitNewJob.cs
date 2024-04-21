@@ -23,7 +23,7 @@ public class State_InitNewJob : BaseState<StateManager>
         static void SetupCurrentJobTimeCard(StateManager stateManager, decimal hourlyRate, string projectName)
         {
             stateManager.Form.TimeKeeper.CurrentJobTimeCard = new();
-            stateManager.Form.TimeKeeper.CurrentJobTimeCard.ProjectName = projectName;
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard.JobName = projectName;
             stateManager.Form.TimeKeeper.CurrentJobTimeCard.HourlyRate = hourlyRate;
         }
     }

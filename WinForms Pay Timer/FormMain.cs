@@ -53,7 +53,7 @@ public partial class FormMain : Form
 
     public TimeCard CreateTimecardForCurJob() => new TimeCard
     {
-        ProjectName = TimeKeeper.CurrentJobTimeCard.ProjectName,
+        JobName = TimeKeeper.CurrentJobTimeCard.JobName,
         HourlyRate = TimeKeeper.CurrentJobTimeCard.HourlyRate,
         TimeSpentWorking = TimeKeeper.ElapsedTime,
         StartTime = TimeKeeper.TimerStartTime,
@@ -79,7 +79,7 @@ public partial class FormMain : Form
 
     static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
                 {
-                timeCard.ProjectName,
+                timeCard.JobName,
                 timeCard.MoneyEarned.ToString("F2"),
                 timeCard.HourlyRate.ToString("F2"),
                 TimeUtil.FormatTime(timeCard.TimeSpentWorking),
