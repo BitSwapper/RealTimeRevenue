@@ -5,6 +5,7 @@ public static class FormMainConstants
     public const int ProjectNameColumnWidth = 120;
     public const int HourlyRateColumnWidth = 55;
     public const int TimeSpentColumnWidth = 75;
+    public const int TimeSpentStartStopColumnWidth = 65;
     public const int MoneyEarnedColumnWidth = 100;
     public const int MinimumValueForDisplay = 2;
     public const string DefaultValueForDisplay = "00";

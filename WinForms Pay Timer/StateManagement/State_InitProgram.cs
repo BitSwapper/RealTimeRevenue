@@ -15,8 +15,8 @@ public class State_InitProgram : BaseState<StateManager>
         stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
         stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Rate", FormMainConstants.HourlyRateColumnWidth);
         stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
-        stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Start Time", FormMainConstants.TimeSpentColumnWidth);
-        stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Stop Time", FormMainConstants.TimeSpentColumnWidth);
+        stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Start Time", FormMainConstants.TimeSpentStartStopColumnWidth);
+        stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Stop Time", FormMainConstants.TimeSpentStartStopColumnWidth);
 
         stateManager.Form.ListViewCompletedJobs.View = View.Details;
         stateManager.Form.ListViewCompletedJobs.GridLines = true;

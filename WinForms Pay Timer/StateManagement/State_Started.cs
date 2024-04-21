@@ -15,6 +15,7 @@ public class State_Started : BaseState<StateManager>
 
         if(stateManager.Form.ListViewCurrentJobTimeCards.Items.Count == 0)
         {
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
             stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
             stateManager.Form.RefreshListView(true);
         }

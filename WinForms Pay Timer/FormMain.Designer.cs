@@ -126,7 +126,7 @@ partial class FormMain
         labelMoneyEarned.AutoSize = true;
         labelMoneyEarned.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         labelMoneyEarned.ForeColor = Color.Green;
-        labelMoneyEarned.Location = new Point(14, 37);
+        labelMoneyEarned.Location = new Point(13, 37);
         labelMoneyEarned.Name = "labelMoneyEarned";
         labelMoneyEarned.Size = new Size(78, 35);
         labelMoneyEarned.TabIndex = 11;
