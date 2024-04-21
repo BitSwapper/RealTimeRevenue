@@ -54,13 +54,25 @@ public partial class FormMain : Form
         StopTime = DateTime.Now
     };
 
-    public void RefreshListView()
+    public void RefreshListView(bool includeCurTimeCard)
     {
         listViewTimeCards.Items.Clear();
+
+        if(includeCurTimeCard)
+        {
+            ListViewItem curCard = MakeNew(TimeKeeper.CurrentJobTimeCard);
+            listViewTimeCards.Items.Add(curCard);
+        }
+
         foreach(var timeCard in TimeKeeper.TimeCardsThisJob.OrderByDescending(tc => tc.StopTime))
         {
-            var listViewItem = new ListViewItem(new[]
-            {
+            ListViewItem listViewItem = MakeNew(timeCard);
+            listViewTimeCards.Items.Add(listViewItem);
+        }
+    }
+
+    private static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
+                {
                 timeCard.ProjectName,
                 timeCard.MoneyEarned.ToString("F2"),
                 timeCard.HourlyRate.ToString("F2"),
@@ -68,8 +80,4 @@ public partial class FormMain : Form
                 timeCard.StartTime.ToString("HH:mm:ss"),
                 timeCard.StopTime.ToString("HH:mm:ss")
             });
-
-            listViewTimeCards.Items.Add(listViewItem);
-        }
-    }
 }

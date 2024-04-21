@@ -12,7 +12,7 @@ public class State_Paused : BaseState<StateManager>
         TimeCard newTimeCard = stateManager.Form.CreateTimecardForCurJob();
 
         stateManager.Form.TimeKeeper.TimeCardsThisJob.Add(newTimeCard);
-        stateManager.Form.RefreshListView();
+        stateManager.Form.RefreshListView(false);
     }
 
     public override void ExitState(StateManager stateManager) { }

@@ -12,7 +12,14 @@ public class State_Started : BaseState<StateManager>
         stateManager.Form.ButtonStartNewJob.Enabled = false;
         stateManager.Form.ButtonTimerComplete.Enabled = true;
         stateManager.Form.ButtonTimerReset.Enabled = true;
+
+        if(stateManager.Form.ListViewCurrentJobTimeCards.Items.Count == 0)
+        {
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
+            stateManager.Form.RefreshListView(true);
+        }
     }
+
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager)
     {
@@ -23,5 +30,8 @@ public class State_Started : BaseState<StateManager>
         stateManager.Form.LabelTimerDisplay.Text = TimeUtil.FormatTime(stateManager.Form.TimeKeeper.ElapsedTime);
         stateManager.Form.LabelMoneyEarned.Text = "$" + totalEarnedThisJob.ToString("F2");
         stateManager.Form.LabelGrandTotal.Text = "$" + GrandTotal.ToString("F2");
+
+        stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
+        stateManager.Form.RefreshListView(true);
     }
 }

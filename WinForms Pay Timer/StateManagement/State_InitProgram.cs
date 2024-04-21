@@ -1,4 +1,6 @@
-﻿namespace WinForms_Pay_Timer.StateManagement;
+﻿using System.Reflection;
+
+namespace WinForms_Pay_Timer.StateManagement;
 
 public class State_InitProgram : BaseState<StateManager>
 {
@@ -23,6 +25,10 @@ public class State_InitProgram : BaseState<StateManager>
         stateManager.Form.ListViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
         stateManager.Form.ListViewCompletedJobs.Columns.Add("Rate", FormMainConstants.HourlyRateColumnWidth);
         stateManager.Form.ListViewCompletedJobs.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
+
+        var doubleBufferedProperty = typeof(ListView).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+        doubleBufferedProperty!.SetValue(stateManager.Form.ListViewCurrentJobTimeCards, true, null);
+        doubleBufferedProperty!.SetValue(stateManager.Form.ListViewCompletedJobs, true, null);
     }
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
