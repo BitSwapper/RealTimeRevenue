@@ -66,7 +66,46 @@ public class State_Paused : BaseState<StateManager>
 
 public class State_Completed : BaseState<StateManager>
 {
-    public override void EnterState(StateManager stateManager) { }
+    public override void EnterState(StateManager stateManager) 
+    {
+        stateManager.form.ButtonTimerPause.PerformClick();
+
+
+        stateManager.form.TimerUpdateTimerText.Stop();
+
+        stateManager.form.ButtonStartNewJob.Enabled = true;
+        stateManager.form.ButtonTimerPause.Enabled = false;
+        stateManager.form.ButtonTimerReset.Enabled = false;
+        stateManager.form.ButtonTimerStart.Enabled = false;
+        stateManager.form.ButtonTimerComplete.Enabled = false;
+        stateManager.form.ButtonCancelJob.Enabled = false;
+
+        stateManager.form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
+        stateManager.form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
+
+        var combinedTimeCard = new TimeCard
+        {
+            ProjectName = stateManager.form.TimeCardsThisJob.First().ProjectName,
+            HourlyRate = stateManager.form.TimeCardsThisJob.First().HourlyRate,
+            TimeSpentWorking = TimeSpan.FromTicks(stateManager.form.TimeCardsThisJob.Sum(tc => tc.TimeSpentWorking.Ticks)),
+            StartTime = stateManager.form.TimeCardsThisJob.Min(tc => tc.StartTime),
+            StopTime = stateManager.form.TimeCardsThisJob.Max(tc => tc.StopTime),
+        };
+
+        var listViewItem = new ListViewItem(new[] {
+        combinedTimeCard.ProjectName,
+        combinedTimeCard.HourlyRate.ToString("F2"),
+        TimeUtil.FormatTime(combinedTimeCard.TimeSpentWorking),
+        combinedTimeCard.MoneyEarned.ToString("F2")});
+
+        stateManager.form.ListViewCompletedJobs.Items.Add(listViewItem);
+        stateManager.form.ListViewTimeCards.Items.Clear();
+
+        stateManager.form.TimeCardsCompletedJobs.Add(combinedTimeCard);
+        stateManager.form.TimeCardsThisJob.Clear();
+
+        stateManager.form.CurrentJobTimeCard = new();
+    }
     public override void ExitState(StateManager stateManager) { }
     public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }

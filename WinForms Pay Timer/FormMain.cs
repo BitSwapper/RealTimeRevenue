@@ -12,17 +12,6 @@ public partial class FormMain : Form
     public List<TimeCard> TimeCardsThisJob { get; set; } = new();
     public List<TimeCard> TimeCardsCompletedJobs { get; set; } = new();
 
-    const int ProjectNameColumnWidth = 120;
-    const int HourlyRateColumnWidth = 80;
-    const int TimeSpentColumnWidth = 90;
-    const int MoneyEarnedColumnWidth = 100;
-    const int StartTimeColumnWidth = 100;
-    const int StopTimeColumnWidth = 100;
-    const int MinimumValueForDisplay = 2;
-    const string DefaultValueForDisplay = "00";
-    const string DefaultValueForMoneyDisplay = "$0.00";
-    const string DefaultValueForTimerDisplay = "00:00:00";
-
     public Timer TimerUpdateTimerText => timerUpdateTimerText;
     public Button ButtonTimerStart => buttonTimerStart;
     public Button ButtonTimerPause => buttonTimerPause;
@@ -30,6 +19,11 @@ public partial class FormMain : Form
     public Button ButtonTimerComplete => buttonTimerComplete;
     public Button ButtonTimerReset => buttonTimerReset;
     public Button ButtonCancelJob => buttonCancelJob;
+    public Label LabelMoneyEarned => labelMoneyEarned;
+    public Label LabelTimerDisplay => labelTimerDisplay;
+    public ListView ListViewCompletedJobs => listViewCompletedJobs;
+    public ListView ListViewTimeCards => listViewTimeCards;
+
 
     public FormMain() => InitializeComponent();
     void FormMain_Load(object sender, EventArgs e)
@@ -38,21 +32,22 @@ public partial class FormMain : Form
         listViewTimeCards.GridLines = true;
         listViewTimeCards.FullRowSelect = true;
 
-        listViewTimeCards.Columns.Add("Project Name", ProjectNameColumnWidth);
-        listViewTimeCards.Columns.Add("Hourly Rate", HourlyRateColumnWidth);
-        listViewTimeCards.Columns.Add("Time Spent", TimeSpentColumnWidth);
-        listViewTimeCards.Columns.Add("Money Earned", MoneyEarnedColumnWidth);
-        listViewTimeCards.Columns.Add("Start Time", StartTimeColumnWidth);
-        listViewTimeCards.Columns.Add("Stop Time", StopTimeColumnWidth);
+
+        listViewTimeCards.Columns.Add("Project Name", FormMainConstants.ProjectNameColumnWidth);
+        listViewTimeCards.Columns.Add("Hourly Rate", FormMainConstants.HourlyRateColumnWidth);
+        listViewTimeCards.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
+        listViewTimeCards.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
+        listViewTimeCards.Columns.Add("Start Time", FormMainConstants.StartTimeColumnWidth);
+        listViewTimeCards.Columns.Add("Stop Time", FormMainConstants.StopTimeColumnWidth);
 
         listViewCompletedJobs.View = View.Details;
         listViewCompletedJobs.GridLines = true;
         listViewCompletedJobs.FullRowSelect = true;
 
-        listViewCompletedJobs.Columns.Add("Project Name", ProjectNameColumnWidth);
-        listViewCompletedJobs.Columns.Add("Hourly Rate", HourlyRateColumnWidth);
-        listViewCompletedJobs.Columns.Add("Time Spent", TimeSpentColumnWidth);
-        listViewCompletedJobs.Columns.Add("Money Earned", MoneyEarnedColumnWidth);
+        listViewCompletedJobs.Columns.Add("Project Name", FormMainConstants.ProjectNameColumnWidth);
+        listViewCompletedJobs.Columns.Add("Hourly Rate", FormMainConstants.HourlyRateColumnWidth);
+        listViewCompletedJobs.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
+        listViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
 
         stateManager = new(this);
     }
@@ -64,7 +59,7 @@ public partial class FormMain : Form
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
-        labelTimerDisplay.Text = FormatTime(elapsedTime);
+        labelTimerDisplay.Text = TimeUtil.FormatTime(elapsedTime);
 
         var totalEarnedThisJob = (TimeCardsThisJob.Sum((t) => t.MoneyEarned) + CurrentJobTimeCard.HourlyRate * (decimal)elapsedTime.TotalHours);
         var totalEarnedOnCompletedJobs = (TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned));
@@ -77,15 +72,6 @@ public partial class FormMain : Form
     void buttonTimerPause_Click(object sender, EventArgs e)
     {
         stateManager.SwapState(StateManager.States.Paused);
-        //buttonTimerStart.Enabled = true;
-        //buttonTimerPause.Enabled = false;
-
-        //timerUpdateTimerText.Stop();
-        //TimeCard newTimeCard = CreateTimecardForCurJob();
-
-        //timeCardsThisJob.Add(newTimeCard);
-
-        //RefreshListView();
     }
 
     public TimeCard CreateTimecardForCurJob() => new TimeCard
@@ -97,8 +83,6 @@ public partial class FormMain : Form
         StopTime = DateTime.Now
     };
 
-
-
     public void RefreshListView()
     {
         listViewTimeCards.Items.Clear();
@@ -108,7 +92,7 @@ public partial class FormMain : Form
             var listViewItem = new ListViewItem(new[] {
             timeCard.ProjectName,
             timeCard.HourlyRate.ToString("F2"),
-            FormatTime(timeCard.TimeSpentWorking),
+            TimeUtil.FormatTime(timeCard.TimeSpentWorking),
             timeCard.MoneyEarned.ToString("F2"),
             timeCard.StartTime.ToString("MM-dd   HH:mm:ss"),
             timeCard.StopTime.ToString("MM-dd   HH:mm:ss")
@@ -137,46 +121,28 @@ public partial class FormMain : Form
             }
         }
     }
+
     private void buttonTimerComplete_Click(object sender, EventArgs e)
     {
-        buttonTimerPause.PerformClick();
-
-
-        timerUpdateTimerText.Stop();
-
-        buttonStartNewJob.Enabled = true;
-        buttonTimerPause.Enabled = false;
-        buttonTimerReset.Enabled = false;
-        buttonTimerStart.Enabled = false;
-        buttonTimerComplete.Enabled = false;
-        buttonCancelJob.Enabled = false;
-
-        labelMoneyEarned.Text = DefaultValueForMoneyDisplay;
-        labelTimerDisplay.Text = DefaultValueForTimerDisplay;
-
-        var combinedTimeCard = new TimeCard
-        {
-            ProjectName = TimeCardsThisJob.First().ProjectName,
-            HourlyRate = TimeCardsThisJob.First().HourlyRate,
-            TimeSpentWorking = TimeSpan.FromTicks(TimeCardsThisJob.Sum(tc => tc.TimeSpentWorking.Ticks)),
-            StartTime = TimeCardsThisJob.Min(tc => tc.StartTime),
-            StopTime = TimeCardsThisJob.Max(tc => tc.StopTime),
-        };
-
-        var listViewItem = new ListViewItem(new[] {
-        combinedTimeCard.ProjectName,
-        combinedTimeCard.HourlyRate.ToString("F2"),
-        FormatTime(combinedTimeCard.TimeSpentWorking),
-        combinedTimeCard.MoneyEarned.ToString("F2")});
-
-        listViewCompletedJobs.Items.Add(listViewItem);
-        listViewTimeCards.Items.Clear();
-
-        TimeCardsCompletedJobs.Add(combinedTimeCard);
-        TimeCardsThisJob.Clear();
-
-        CurrentJobTimeCard = new();
+        stateManager.SwapState(StateManager.States.Completed);
     }
+}
 
-    private string FormatTime(TimeSpan elapsedTime) => $"{((int)elapsedTime.TotalHours).ToString("D2")}:{((int)elapsedTime.TotalMinutes % 60).ToString("D2")}:{(elapsedTime.TotalSeconds % 60).ToString("00")}";
+public static class FormMainConstants
+{
+    public const int ProjectNameColumnWidth = 120;
+    public const int HourlyRateColumnWidth = 80;
+    public const int TimeSpentColumnWidth = 90;
+    public const int MoneyEarnedColumnWidth = 100;
+    public const int StartTimeColumnWidth = 100;
+    public const int StopTimeColumnWidth = 100;
+    public const int MinimumValueForDisplay = 2;
+    public const string DefaultValueForDisplay = "00";
+    public const string DefaultValueForMoneyDisplay = "$0.00";
+    public const string DefaultValueForTimerDisplay = "00:00:00";
+}
+
+public static class TimeUtil
+{
+    public static string FormatTime(TimeSpan elapsedTime) => $"{((int)elapsedTime.TotalHours).ToString("D2")}:{((int)elapsedTime.TotalMinutes % 60).ToString("D2")}:{(elapsedTime.TotalSeconds % 60).ToString("00")}";
 }
