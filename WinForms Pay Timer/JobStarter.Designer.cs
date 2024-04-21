@@ -90,6 +90,7 @@ partial class JobStarter
         Controls.Add(textBoxHourlyRate);
         Name = "JobStarter";
         Text = "JobStarter";
+        Load += JobStarter_Load;
         ResumeLayout(false);
         PerformLayout();
     }

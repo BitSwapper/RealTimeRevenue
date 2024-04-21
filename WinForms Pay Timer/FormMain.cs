@@ -1,3 +1,4 @@
+using WinForms_Pay_Timer.ColorManagement;
 using WinForms_Pay_Timer.StateManagement;
 using WinForms_Pay_Timer.TimeManagement;
 using Timer = System.Windows.Forms.Timer;
@@ -8,7 +9,6 @@ public partial class FormMain : Form
 {
     StateManager stateManager;
     public TimeKeeper TimeKeeper { get; } = new();
-
     public Timer TimerUpdateTimerText => timerUpdateTimerText;
     public Button ButtonTimerStart => buttonTimerStart;
     public Button ButtonTimerPause => buttonTimerPause;
@@ -17,7 +17,7 @@ public partial class FormMain : Form
     public Button ButtonTimerReset => buttonTimerReset;
     public Label LabelMoneyEarned => labelMoneyEarned;
     public Label LabelTimerDisplay => labelTimerDisplay;
-    public Label LabelGrandTotal => labelGrandTotal;
+    public Label LabelGrandTotal => labelMoneyGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewCurrentJobTimeCards => listViewTimeCards;
 
@@ -25,12 +25,19 @@ public partial class FormMain : Form
 
     void FormMain_Load(object sender, EventArgs e)
     {
+        ColorTheme.InitColors(this);
+
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
     }
 
-    void timerUpdateTimerText_Tick(object sender, EventArgs e) => stateManager.UpdateState();
 
+
+    void timerUpdateTimerText_Tick(object sender, EventArgs e)
+    {
+        stateManager.UpdateState();
+        this.Text = "WinForms Pay Timer | " + stateManager.CurrentState.ToString();
+    }
     void buttonTimerStart_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Started);
 
     void buttonTimerPause_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Paused);
@@ -80,4 +87,14 @@ public partial class FormMain : Form
                 timeCard.StartTime.ToString("HH:mm:ss"),
                 timeCard.StopTime.ToString("HH:mm:ss")
             });
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if(comboBox1.SelectedIndex == 0)
+            Properties.Settings.Default.UseDarkMode = false;
+        else
+            Properties.Settings.Default.UseDarkMode = true;
+
+        ColorTheme.InitColors(this);
+    }
 }

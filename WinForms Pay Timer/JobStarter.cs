@@ -1,4 +1,6 @@
-﻿namespace WinForms_Pay_Timer;
+﻿using WinForms_Pay_Timer.ColorManagement;
+
+namespace WinForms_Pay_Timer;
 
 public partial class JobStarter : Form
 {
@@ -16,5 +18,10 @@ public partial class JobStarter : Form
 
         this.DialogResult = DialogResult.OK;
         this.Close();
+    }
+
+    private void JobStarter_Load(object sender, EventArgs e)
+    {
+        ColorTheme.InitColors(this);
     }
 }

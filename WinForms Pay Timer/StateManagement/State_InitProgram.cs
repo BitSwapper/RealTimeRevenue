@@ -29,7 +29,24 @@ public class State_InitProgram : BaseState<StateManager>
         var doubleBufferedProperty = typeof(ListView).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
         doubleBufferedProperty!.SetValue(stateManager.Form.ListViewCurrentJobTimeCards, true, null);
         doubleBufferedProperty!.SetValue(stateManager.Form.ListViewCompletedJobs, true, null);
+
+        //stateManager.Form.ButtonTimerStart.EnabledChanged += Control_EnabledChanged;
     }
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
+
+    //private void Control_EnabledChanged(object sender, EventArgs e)
+    //{
+    //    Control control = (Control)sender;
+    //    if(!control.Enabled)
+    //    {
+    //        control.BackColor = Color.Blue; // Set the background color to gray
+    //        control.ForeColor = Color.White; // Set the foreground color to white
+    //    }
+    //    else
+    //    {
+    //        control.BackColor = Color.Blue; // Set the background color to white
+    //        control.ForeColor = Color.Black; // Set the foreground color to black
+    //    }
+    //}
 }

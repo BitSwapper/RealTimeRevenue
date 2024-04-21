@@ -3,7 +3,7 @@
 public class StateManager
 {
     public enum States { InitialzingProgram, Started, InitNewJob, Paused, Completed, Reset }
-    States currentState = States.InitialzingProgram;
+    public States CurrentState { get; private set; } = States.InitialzingProgram;
 
     public FormMain Form { get; }
 
@@ -21,10 +21,10 @@ public class StateManager
 
     public void SwapState(States state)
     {
-        concreteStates[currentState].ExitState(this);
-        currentState = state;
-        concreteStates[currentState].EnterState(this);
+        concreteStates[CurrentState].ExitState(this);
+        CurrentState = state;
+        concreteStates[CurrentState].EnterState(this);
     }
 
-    public void UpdateState() => concreteStates[currentState].UpdateState(this);
+    public void UpdateState() => concreteStates[CurrentState].UpdateState(this);
 }
