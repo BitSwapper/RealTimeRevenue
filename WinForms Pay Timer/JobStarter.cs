@@ -6,7 +6,7 @@ public partial class JobStarter : Form
 
     public JobStarter() => InitializeComponent();
 
-    private void buttonFinish_Click(object sender, EventArgs e)
+    void buttonFinish_Click(object sender, EventArgs e)
     {
         if(decimal.TryParse(textBoxHourlyRate.Text, out var newHourly))
             HourlyRate = newHourly;

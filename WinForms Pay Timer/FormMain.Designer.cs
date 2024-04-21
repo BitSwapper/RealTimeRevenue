@@ -5,7 +5,7 @@ partial class FormMain
     /// <summary>
     ///  Required designer variable.
     /// </summary>
-    private System.ComponentModel.IContainer components = null;
+    System.ComponentModel.IContainer components = null;
 
     /// <summary>
     ///  Clean up any resources being used.
@@ -26,7 +26,7 @@ partial class FormMain
     ///  Required method for Designer support - do not modify
     ///  the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent()
+    void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
         buttonTimerStart = new Button();
@@ -186,16 +186,16 @@ partial class FormMain
     }
 
     #endregion
-    private Button buttonTimerStart;
-    private Button buttonTimerPause;
-    private Button buttonTimerReset;
-    private Label labelTimerDisplay;
-    private ListView listViewTimeCards;
-    private Button buttonTimerComplete;
-    private System.Windows.Forms.Timer timerUpdateTimerText;
-    private Button buttonStartNewJob;
-    private Label labelMoneyEarned;
-    private ListView listViewCompletedJobs;
-    private Label labelGrandTotal;
-    private Button buttonCancelJob;
+    Button buttonTimerStart;
+    Button buttonTimerPause;
+    Button buttonTimerReset;
+    Label labelTimerDisplay;
+    ListView listViewTimeCards;
+    Button buttonTimerComplete;
+    System.Windows.Forms.Timer timerUpdateTimerText;
+    Button buttonStartNewJob;
+    Label labelMoneyEarned;
+    ListView listViewCompletedJobs;
+    Label labelGrandTotal;
+    Button buttonCancelJob;
 }

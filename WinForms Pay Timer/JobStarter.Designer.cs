@@ -5,7 +5,7 @@ partial class JobStarter
     /// <summary>
     /// Required designer variable.
     /// </summary>
-    private System.ComponentModel.IContainer components = null;
+    System.ComponentModel.IContainer components = null;
 
     /// <summary>
     /// Clean up any resources being used.
@@ -26,7 +26,7 @@ partial class JobStarter
     /// Required method for Designer support - do not modify
     /// the contents of this method with the code editor.
     /// </summary>
-    private void InitializeComponent()
+    void InitializeComponent()
     {
         labelCurrentProj = new Label();
         textBoxProjectName = new TextBox();
@@ -96,9 +96,9 @@ partial class JobStarter
 
     #endregion
 
-    private Label labelCurrentProj;
-    private TextBox textBoxProjectName;
-    private Label labelHourlyRate;
-    private TextBox textBoxHourlyRate;
-    private Button buttonFinish;
+    Label labelCurrentProj;
+    TextBox textBoxProjectName;
+    Label labelHourlyRate;
+    TextBox textBoxHourlyRate;
+    Button buttonFinish;
 }

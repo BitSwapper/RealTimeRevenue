@@ -2,8 +2,8 @@
 
 public class StateManager
 {
-    public enum States { Started, Paused, Completed, Reset }
-    States currentState = States.Completed;
+    public enum States { InitialzingProgram, Started, InitNewJob, Paused, Completed, Reset }
+    States currentState = States.InitialzingProgram;
 
     public FormMain form;
 
@@ -12,6 +12,8 @@ public class StateManager
     Dictionary<States, BaseState<StateManager>> concreteStates = new()
     {
         {States.Started, new State_Started() },
+        {States.InitialzingProgram, new State_InitProgram() },
+        {States.InitNewJob, new State_InitNewJob() },
         {States.Paused, new State_Paused() },
         {States.Completed, new State_Completed() },
         {States.Reset, new State_Reset()}
@@ -29,7 +31,7 @@ public class StateManager
 
 public class State_Started : BaseState<StateManager>
 {
-    public override void EnterState(StateManager stateManager) 
+    public override void EnterState(StateManager stateManager)
     {
         stateManager.form.TimerStartTime = DateTime.Now;
         stateManager.form.TimerUpdateTimerText.Start();
@@ -47,7 +49,7 @@ public class State_Started : BaseState<StateManager>
 
 public class State_Paused : BaseState<StateManager>
 {
-    public override void EnterState(StateManager stateManager) 
+    public override void EnterState(StateManager stateManager)
     {
         stateManager.form.ButtonTimerStart.Enabled = true;
         stateManager.form.ButtonTimerPause.Enabled = false;
@@ -66,7 +68,7 @@ public class State_Paused : BaseState<StateManager>
 
 public class State_Completed : BaseState<StateManager>
 {
-    public override void EnterState(StateManager stateManager) 
+    public override void EnterState(StateManager stateManager)
     {
         stateManager.form.ButtonTimerPause.PerformClick();
 
@@ -114,6 +116,58 @@ public class State_Completed : BaseState<StateManager>
 public class State_Reset : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager) { }
+    public override void ExitState(StateManager stateManager) { }
+    public override void FixedUpdateState(StateManager stateManager) { }
+    public override void UpdateState(StateManager stateManager) { }
+}
+
+public class State_InitNewJob : BaseState<StateManager>
+{
+    public override void EnterState(StateManager stateManager)
+    {
+        using(var jobStartedForm = new JobStarter())
+        {
+            if(jobStartedForm.ShowDialog() == DialogResult.OK)
+            {
+                decimal hourlyRate = jobStartedForm.HourlyRate;
+                string projectName = jobStartedForm.ProjectName;
+
+                stateManager.form.CurrentJobTimeCard = new();
+                stateManager.form.CurrentJobTimeCard.ProjectName = projectName;
+                stateManager.form.CurrentJobTimeCard.HourlyRate = hourlyRate;
+                stateManager.form.ButtonTimerStart.Enabled = true;
+                stateManager.form.ButtonTimerComplete.Enabled = false;
+                stateManager.form.ButtonTimerReset.Enabled = false;
+            }
+        }
+    }
+    public override void ExitState(StateManager stateManager) { }
+    public override void FixedUpdateState(StateManager stateManager) { }
+    public override void UpdateState(StateManager stateManager) { }
+}
+
+public class State_InitProgram : BaseState<StateManager>
+{
+    public override void EnterState(StateManager stateManager)
+    {
+        stateManager.form.ListViewTimeCards.View = View.Details;
+        stateManager.form.ListViewTimeCards.GridLines = true;
+        stateManager.form.ListViewTimeCards.FullRowSelect = true;
+        stateManager.form.ListViewTimeCards.Columns.Add("Project Name", FormMainConstants.ProjectNameColumnWidth);
+        stateManager.form.ListViewTimeCards.Columns.Add("Hourly Rate", FormMainConstants.HourlyRateColumnWidth);
+        stateManager.form.ListViewTimeCards.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
+        stateManager.form.ListViewTimeCards.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
+        stateManager.form.ListViewTimeCards.Columns.Add("Start Time", FormMainConstants.StartTimeColumnWidth);
+        stateManager.form.ListViewTimeCards.Columns.Add("Stop Time", FormMainConstants.StopTimeColumnWidth);
+
+        stateManager.form.ListViewCompletedJobs.View = View.Details;
+        stateManager.form.ListViewCompletedJobs.GridLines = true;
+        stateManager.form.ListViewCompletedJobs.FullRowSelect = true;
+        stateManager.form.ListViewCompletedJobs.Columns.Add("Project Name", FormMainConstants.ProjectNameColumnWidth);
+        stateManager.form.ListViewCompletedJobs.Columns.Add("Hourly Rate", FormMainConstants.HourlyRateColumnWidth);
+        stateManager.form.ListViewCompletedJobs.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
+        stateManager.form.ListViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
+    }
     public override void ExitState(StateManager stateManager) { }
     public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
