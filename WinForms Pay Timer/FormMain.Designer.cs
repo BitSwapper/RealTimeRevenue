@@ -258,6 +258,6 @@ partial class FormMain
     Label labelMoneyGrandTotal;
     Label label1;
     ComboBox comboBox1;
-    private LinkLabel linkLabel1;
-    private LinkLabel linkLabel2;
+    LinkLabel linkLabel1;
+    LinkLabel linkLabel2;
 }

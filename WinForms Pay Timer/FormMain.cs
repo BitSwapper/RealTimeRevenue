@@ -100,7 +100,7 @@ public partial class FormMain : Form
 
     void linkLabelDonation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://buymeacoffee.com/bitswapper");
 
-    private static void OpenLink(string link)
+    static void OpenLink(string link)
     {
         using(var process = new System.Diagnostics.Process())
         {

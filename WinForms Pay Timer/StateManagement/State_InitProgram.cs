@@ -55,7 +55,7 @@ public class State_InitProgram : BaseState<StateManager>
         e.Graphics.DrawString(e.Header.Text, e.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColorListViewCaption), textBounds);
     }
 
-    private void listView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+    void listView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
     {
         e.DrawBackground();
         e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColor), e.Bounds);
