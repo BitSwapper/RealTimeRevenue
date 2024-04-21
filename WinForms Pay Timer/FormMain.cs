@@ -20,7 +20,7 @@ public partial class FormMain : Form
 
         listViewTimeCards.Columns.Add("Project Name", 120);
         listViewTimeCards.Columns.Add("Hourly Rate", 80);
-        listViewTimeCards.Columns.Add("Time Spent", 100);
+        listViewTimeCards.Columns.Add("Time Spent", 90);
         listViewTimeCards.Columns.Add("Money Earned", 100);
         listViewTimeCards.Columns.Add("Start Time", 100);
         listViewTimeCards.Columns.Add("Stop Time", 100);
@@ -32,7 +32,7 @@ public partial class FormMain : Form
 
         listViewCompletedJobs.Columns.Add("Project Name", 120);
         listViewCompletedJobs.Columns.Add("Hourly Rate", 80);
-        listViewCompletedJobs.Columns.Add("Time Spent", 100);
+        listViewCompletedJobs.Columns.Add("Time Spent", 90);
         listViewCompletedJobs.Columns.Add("Money Earned", 100);
 
         Type listViewType = typeof(ListView);
@@ -50,6 +50,7 @@ public partial class FormMain : Form
         buttonStartNewJob.Enabled = false;
         buttonTimerComplete.Enabled = true;
         buttonTimerReset.Enabled = true;
+        buttonCancelJob.Enabled = true;
     }
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
@@ -62,8 +63,6 @@ public partial class FormMain : Form
 
         labelMoneyEarned.Text = "$" + totalEarnedThisJob.ToString("F2");
         labelGrandTotal.Text = "$" + GrandTotal.ToString("F2");
-
-        RefreshListView();
     }
 
     void buttonTimerPause_Click(object sender, EventArgs e)
@@ -138,14 +137,11 @@ public partial class FormMain : Form
         buttonTimerReset.Enabled = false;
         buttonTimerStart.Enabled = false;
         buttonTimerComplete.Enabled = false;
+        buttonCancelJob.Enabled = false;
 
-        
 
-        //if(timeCardsThisJob.Count == 0)
-        //{
-        //    currentJobTimeCard = CreateTimecardForCurJob();
-        //    timeCardsThisJob.Add(currentJobTimeCard);
-        //}
+        labelMoneyEarned.Text = "$0.00";
+        labelTimerDisplay.Text = "00:00:00";
 
         var combinedTimeCard = new TimeCard
         {
