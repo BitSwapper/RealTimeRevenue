@@ -144,7 +144,6 @@ public partial class FormMain : Form
         buttonTimerComplete.Enabled = false;
         buttonCancelJob.Enabled = false;
 
-
         labelMoneyEarned.Text = DefaultValueForMoneyDisplay;
         labelTimerDisplay.Text = DefaultValueForTimerDisplay;
 
