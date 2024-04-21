@@ -226,7 +226,7 @@ partial class FormMain
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         Name = "FormMain";
-        Text = "WinForms Pay Timer 1.0";
+        Text = "Cash Clock 1.01";
         Load += FormMain_Load;
         ResumeLayout(false);
         PerformLayout();

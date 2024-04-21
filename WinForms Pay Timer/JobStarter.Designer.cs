@@ -42,7 +42,7 @@ partial class JobStarter
         labelCurrentProj.Name = "labelCurrentProj";
         labelCurrentProj.Size = new Size(79, 15);
         labelCurrentProj.TabIndex = 7;
-        labelCurrentProj.Text = "Project Name";
+        labelCurrentProj.Text = "Job Name";
         // 
         // textBoxProjectName
         // 
