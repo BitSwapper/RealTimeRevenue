@@ -4,14 +4,14 @@ public static partial class ColorThemeManager
 {
     public enum ThemeMode
     {
-        Light,
         Dark,
+        Light,
         OceanBreeze,
         Sunset,
-        Midnight,
         RoseGarden,
         Winter,
-        Neon,
-        Halloween
+        HighContrast,
+        Halloween,
+        MutedHalloween,
     }
 }

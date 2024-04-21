@@ -35,9 +35,11 @@ public class State_InitProgram : BaseState<StateManager>
 
         stateManager.Form.ListViewCurrentJobTimeCards.OwnerDraw = true;
         stateManager.Form.ListViewCurrentJobTimeCards.DrawColumnHeader += listView_DrawColumnHeader;
+        stateManager.Form.ListViewCurrentJobTimeCards.DrawSubItem += listView_DrawSubItem;
 
         stateManager.Form.ListViewCompletedJobs.OwnerDraw = true;
         stateManager.Form.ListViewCompletedJobs.DrawColumnHeader += listView_DrawColumnHeader;
+        stateManager.Form.ListViewCompletedJobs.DrawSubItem += listView_DrawSubItem;
     }
 
     public override void ExitState(StateManager stateManager) { }
@@ -46,10 +48,16 @@ public class State_InitProgram : BaseState<StateManager>
     void listView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
     {
         e.DrawBackground();
-        e.Graphics.FillRectangle(new SolidBrush(ColorThemeManager.curTheme.ButtonColor), e.Bounds);
+        e.Graphics.FillRectangle(new SolidBrush(ColorThemeManager.CurTheme.ButtonColor), e.Bounds);
 
         Rectangle textBounds = e.Bounds;
         textBounds.X += 4;
-        e.Graphics.DrawString(e.Header.Text, e.Font, new SolidBrush(ColorThemeManager.curTheme.FontColor), textBounds);
+        e.Graphics.DrawString(e.Header.Text, e.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColorListViewCaption), textBounds);
+    }
+
+    private void listView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+    {
+        e.DrawBackground();
+        e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColor), e.Bounds);
     }
 }
