@@ -16,7 +16,7 @@ public static partial class ColorThemeManager
     {
         ThemeMode.Dark => ColorThemePalette.Dark,
         ThemeMode.Light => ColorThemePalette.Light,
-        ThemeMode.OceanBreeze => ColorThemePalette.OceanBreeze,
+        ThemeMode.Ocean => ColorThemePalette.Ocean,
         ThemeMode.Sunset => ColorThemePalette.Sunset,
         ThemeMode.RoseGarden => ColorThemePalette.RoseGarden,
         ThemeMode.Winter => ColorThemePalette.Winter,
@@ -27,7 +27,7 @@ public static partial class ColorThemeManager
     };
 
 
-    static void ChangeControlsColor(Control control,ColorTheme theme)
+    static void ChangeControlsColor(Control control, ColorTheme theme)
     {
         foreach(Control childControl in control.Controls)
         {
@@ -36,9 +36,8 @@ public static partial class ColorThemeManager
                 button.BackColor = theme.ButtonColor;
                 button.ForeColor = theme.ButtonFontColor;
                 if(!button.Enabled)
-                {
                     button.BackColor = theme.DisabledButtonColor;
-                }
+
                 button.EnabledChanged += (sender, e) =>
                 {
                     Button btn = (Button)sender!;
@@ -81,9 +80,7 @@ public static partial class ColorThemeManager
             }
 
             if(childControl.Controls.Count > 0)
-            {
                 ChangeControlsColor(childControl, theme);
-            }
         }
     }
 }

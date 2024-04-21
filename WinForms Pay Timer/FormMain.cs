@@ -36,11 +36,7 @@ public partial class FormMain : Form
         initd = true;
     }
 
-    void timerUpdateTimerText_Tick(object sender, EventArgs e)
-    {
-        stateManager.UpdateState();
-        this.Text = "WinForms Pay Timer | " + stateManager.CurrentState.ToString();
-    }
+    void timerUpdateTimerText_Tick(object sender, EventArgs e) => stateManager.UpdateState();
 
     void buttonTimerStart_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Started);
 
@@ -98,5 +94,22 @@ public partial class FormMain : Form
         Properties.Settings.Default.ColorThemeOption = comboBox1.SelectedIndex;
         Properties.Settings.Default.Save();
         ColorThemeManager.InitColors(this);
+    }
+
+    void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://github.com/BitSwapper");
+
+    void linkLabelDonation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://buymeacoffee.com/bitswapper");
+
+    private static void OpenLink(string link)
+    {
+        using(var process = new System.Diagnostics.Process())
+        {
+            process.StartInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                UseShellExecute = true,
+                FileName = link
+            };
+            process.Start();
+        }
     }
 }

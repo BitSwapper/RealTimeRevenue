@@ -42,6 +42,8 @@ partial class FormMain
         labelMoneyGrandTotal = new Label();
         label1 = new Label();
         comboBox1 = new ComboBox();
+        linkLabel1 = new LinkLabel();
+        linkLabel2 = new LinkLabel();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -50,9 +52,9 @@ partial class FormMain
         buttonTimerStart.FlatAppearance.BorderColor = Color.Gray;
         buttonTimerStart.FlatAppearance.CheckedBackColor = Color.Silver;
         buttonTimerStart.FlatStyle = FlatStyle.Flat;
-        buttonTimerStart.Location = new Point(98, 57);
+        buttonTimerStart.Location = new Point(97, 57);
         buttonTimerStart.Name = "buttonTimerStart";
-        buttonTimerStart.Size = new Size(75, 23);
+        buttonTimerStart.Size = new Size(55, 23);
         buttonTimerStart.TabIndex = 4;
         buttonTimerStart.Text = "Start";
         buttonTimerStart.UseVisualStyleBackColor = true;
@@ -64,9 +66,9 @@ partial class FormMain
         buttonTimerPause.FlatAppearance.BorderColor = Color.Gray;
         buttonTimerPause.FlatAppearance.CheckedBackColor = Color.Silver;
         buttonTimerPause.FlatStyle = FlatStyle.Flat;
-        buttonTimerPause.Location = new Point(183, 57);
+        buttonTimerPause.Location = new Point(180, 57);
         buttonTimerPause.Name = "buttonTimerPause";
-        buttonTimerPause.Size = new Size(75, 23);
+        buttonTimerPause.Size = new Size(55, 23);
         buttonTimerPause.TabIndex = 5;
         buttonTimerPause.Text = "Pause";
         buttonTimerPause.UseVisualStyleBackColor = true;
@@ -78,9 +80,9 @@ partial class FormMain
         buttonTimerReset.FlatAppearance.BorderColor = Color.Gray;
         buttonTimerReset.FlatAppearance.CheckedBackColor = Color.Silver;
         buttonTimerReset.FlatStyle = FlatStyle.Flat;
-        buttonTimerReset.Location = new Point(353, 57);
+        buttonTimerReset.Location = new Point(346, 57);
         buttonTimerReset.Name = "buttonTimerReset";
-        buttonTimerReset.Size = new Size(75, 23);
+        buttonTimerReset.Size = new Size(55, 23);
         buttonTimerReset.TabIndex = 6;
         buttonTimerReset.Text = "Reset";
         buttonTimerReset.UseVisualStyleBackColor = true;
@@ -101,7 +103,7 @@ partial class FormMain
         // 
         listViewTimeCards.Location = new Point(12, 86);
         listViewTimeCards.Name = "listViewTimeCards";
-        listViewTimeCards.Size = new Size(502, 123);
+        listViewTimeCards.Size = new Size(475, 123);
         listViewTimeCards.TabIndex = 8;
         listViewTimeCards.UseCompatibleStateImageBehavior = false;
         // 
@@ -111,11 +113,11 @@ partial class FormMain
         buttonTimerComplete.FlatAppearance.BorderColor = Color.Gray;
         buttonTimerComplete.FlatAppearance.CheckedBackColor = Color.Silver;
         buttonTimerComplete.FlatStyle = FlatStyle.Flat;
-        buttonTimerComplete.Location = new Point(268, 57);
+        buttonTimerComplete.Location = new Point(263, 57);
         buttonTimerComplete.Name = "buttonTimerComplete";
-        buttonTimerComplete.Size = new Size(75, 23);
+        buttonTimerComplete.Size = new Size(55, 23);
         buttonTimerComplete.TabIndex = 9;
-        buttonTimerComplete.Text = "Complete";
+        buttonTimerComplete.Text = "Finish";
         buttonTimerComplete.UseVisualStyleBackColor = true;
         buttonTimerComplete.Click += buttonTimerComplete_Click;
         // 
@@ -129,7 +131,7 @@ partial class FormMain
         buttonStartNewJob.FlatAppearance.BorderColor = Color.Gray;
         buttonStartNewJob.FlatAppearance.CheckedBackColor = Color.Silver;
         buttonStartNewJob.FlatStyle = FlatStyle.Flat;
-        buttonStartNewJob.Location = new Point(212, 7);
+        buttonStartNewJob.Location = new Point(197, 7);
         buttonStartNewJob.Name = "buttonStartNewJob";
         buttonStartNewJob.Size = new Size(104, 23);
         buttonStartNewJob.TabIndex = 10;
@@ -153,7 +155,7 @@ partial class FormMain
         // 
         listViewCompletedJobs.Location = new Point(12, 213);
         listViewCompletedJobs.Name = "listViewCompletedJobs";
-        listViewCompletedJobs.Size = new Size(502, 123);
+        listViewCompletedJobs.Size = new Size(475, 123);
         listViewCompletedJobs.TabIndex = 12;
         listViewCompletedJobs.UseCompatibleStateImageBehavior = false;
         // 
@@ -162,7 +164,7 @@ partial class FormMain
         labelMoneyGrandTotal.AutoSize = true;
         labelMoneyGrandTotal.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         labelMoneyGrandTotal.ForeColor = Color.Green;
-        labelMoneyGrandTotal.Location = new Point(436, 48);
+        labelMoneyGrandTotal.Location = new Point(409, 48);
         labelMoneyGrandTotal.Name = "labelMoneyGrandTotal";
         labelMoneyGrandTotal.Size = new Size(78, 35);
         labelMoneyGrandTotal.TabIndex = 13;
@@ -172,7 +174,7 @@ partial class FormMain
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(439, 35);
+        label1.Location = new Point(412, 35);
         label1.Name = "label1";
         label1.Size = new Size(67, 15);
         label1.TabIndex = 14;
@@ -184,17 +186,43 @@ partial class FormMain
         comboBox1.FormattingEnabled = true;
         comboBox1.ItemHeight = 15;
         comboBox1.Items.AddRange(new object[] { "Light", "Dark" });
-        comboBox1.Location = new Point(403, 7);
+        comboBox1.Location = new Point(376, 7);
         comboBox1.Name = "comboBox1";
         comboBox1.Size = new Size(103, 23);
         comboBox1.TabIndex = 15;
         comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         // 
+        // linkLabel1
+        // 
+        linkLabel1.AutoSize = true;
+        linkLabel1.LinkColor = Color.FromArgb(128, 128, 255);
+        linkLabel1.Location = new Point(12, 339);
+        linkLabel1.Name = "linkLabel1";
+        linkLabel1.Size = new Size(43, 15);
+        linkLabel1.TabIndex = 17;
+        linkLabel1.TabStop = true;
+        linkLabel1.Text = "Github";
+        linkLabel1.LinkClicked += linkLabelGithub_LinkClicked;
+        // 
+        // linkLabel2
+        // 
+        linkLabel2.AutoSize = true;
+        linkLabel2.LinkColor = Color.FromArgb(128, 128, 255);
+        linkLabel2.Location = new Point(441, 339);
+        linkLabel2.Name = "linkLabel2";
+        linkLabel2.Size = new Size(45, 15);
+        linkLabel2.TabIndex = 18;
+        linkLabel2.TabStop = true;
+        linkLabel2.Text = "Donate";
+        linkLabel2.LinkClicked += linkLabelDonation_LinkClicked;
+        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(524, 343);
+        ClientSize = new Size(496, 358);
+        Controls.Add(linkLabel2);
+        Controls.Add(linkLabel1);
         Controls.Add(comboBox1);
         Controls.Add(label1);
         Controls.Add(labelMoneyGrandTotal);
@@ -207,6 +235,8 @@ partial class FormMain
         Controls.Add(buttonTimerReset);
         Controls.Add(buttonTimerPause);
         Controls.Add(buttonTimerStart);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
+        MaximizeBox = false;
         Name = "FormMain";
         Text = "WinForms Pay Timer";
         Load += FormMain_Load;
@@ -228,4 +258,6 @@ partial class FormMain
     Label labelMoneyGrandTotal;
     Label label1;
     ComboBox comboBox1;
+    private LinkLabel linkLabel1;
+    private LinkLabel linkLabel2;
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WinForms_Pay_Timer.ColorManagement;
+﻿namespace WinForms_Pay_Timer.ColorManagement;
 public static class ColorThemePalette
 {
     public static ColorTheme Light { get; } = new()
@@ -15,8 +9,11 @@ public static class ColorThemePalette
         FontColorListViewCaption = Color.Black,
         ButtonColor = Color.FromArgb(255, 225, 225, 225),
         ButtonFontColor = Color.Black,
-        DisabledButtonColor = Color.FromArgb(255, 155, 155, 155)
+        DisabledButtonColor = Color.FromArgb(255, 155, 155, 155),
+        TimerColor = Color.Black,
+        MoneyFontColor = Color.Green,
     };
+
     public static ColorTheme Dark { get; } = new()
     {
         UseDarkMode = true,
@@ -27,33 +24,34 @@ public static class ColorThemePalette
         ButtonFontColor = Color.WhiteSmoke,
         DisabledButtonColor = Color.FromArgb(255, 100, 100, 100),
         TimerColor = Color.WhiteSmoke,
-        MoneyFontColor = Color.WhiteSmoke
+        MoneyFontColor = Color.Green
     };
 
-    public static ColorTheme OceanBreeze { get; } = new()
+
+    public static ColorTheme Ocean { get; } = new()
     {
         UseDarkMode = false,
-        ColorBg = Color.FromArgb(255, 135, 196, 215),
-        FontColor = Color.FromArgb(255, 3, 43, 68),
-        FontColorListViewCaption = Color.WhiteSmoke,
-        ButtonColor = Color.FromArgb(255, 52, 168, 90),
+        ColorBg = Color.FromArgb(255, 130, 190, 220),
+        FontColor = Color.FromArgb(255, 0, 51, 80),
+        FontColorListViewCaption = Color.LightGray,
+        ButtonColor = Color.FromArgb(255, 45, 150, 100),
         ButtonFontColor = Color.White,
-        DisabledButtonColor = Color.FromArgb(255, 55, 80, 80),
-        TimerColor = Color.White,
-        MoneyFontColor = Color.White
+        DisabledButtonColor = Color.FromArgb(255, 50, 70, 70),
+        TimerColor = Color.FromArgb(255, 0, 0, 128),
+        MoneyFontColor = Color.FromArgb(255, 255, 215, 0)
     };
 
     public static ColorTheme Sunset { get; } = new()
     {
         UseDarkMode = false,
-        ColorBg = Color.FromArgb(255, 255, 192, 128),
-        FontColor = Color.FromArgb(255, 102, 51, 0),
-        FontColorListViewCaption = Color.WhiteSmoke,
-        ButtonColor = Color.FromArgb(255, 255, 153, 0),
+        ColorBg = Color.FromArgb(255, 255, 204, 153),
+        FontColor = Color.FromArgb(255, 158, 91, 91),
+        FontColorListViewCaption = Color.LightGray,
+        ButtonColor = Color.FromArgb(255, 255, 178, 102),
         ButtonFontColor = Color.White,
-        DisabledButtonColor = Color.FromArgb(255, 128, 80, 60),
-        TimerColor = Color.Black,
-        MoneyFontColor = Color.Black
+        DisabledButtonColor = Color.FromArgb(255, 153, 102, 80),
+        TimerColor = Color.FromArgb(255, 139, 0, 0),
+        MoneyFontColor = Color.FromArgb(255, 0, 191, 255)
     };
 
     public static ColorTheme Midnight { get; } = new()
@@ -65,8 +63,8 @@ public static class ColorThemePalette
         ButtonColor = Color.FromArgb(255, 75, 0, 130),
         ButtonFontColor = Color.FromArgb(255, 230, 230, 250),
         DisabledButtonColor = Color.FromArgb(255, 45, 45, 90),
-        TimerColor = Color.FromArgb(255, 230, 230, 250),
-        MoneyFontColor = Color.FromArgb(255, 230, 230, 250)
+        TimerColor = Color.DeepSkyBlue,
+        MoneyFontColor = Color.Silver
     };
 
     public static ColorTheme RoseGarden { get; } = new()
@@ -78,8 +76,8 @@ public static class ColorThemePalette
         ButtonColor = Color.FromArgb(255, 205, 92, 92),
         ButtonFontColor = Color.White,
         DisabledButtonColor = Color.FromArgb(255, 165, 82, 82),
-        TimerColor = Color.White,
-        MoneyFontColor = Color.White
+        TimerColor = Color.MistyRose,
+        MoneyFontColor = Color.MediumVioletRed
     };
 
     public static ColorTheme Winter { get; } = new()
@@ -91,8 +89,8 @@ public static class ColorThemePalette
         ButtonColor = Color.FromArgb(255, 173, 216, 230),
         ButtonFontColor = Color.White,
         DisabledButtonColor = Color.FromArgb(255, 150, 190, 225),
-        TimerColor = Color.Black,
-        MoneyFontColor = Color.Black
+        TimerColor = Color.LightSteelBlue,
+        MoneyFontColor = Color.DeepSkyBlue
     };
 
 
@@ -105,8 +103,8 @@ public static class ColorThemePalette
         ButtonColor = Color.FromArgb(255, 0, 223, 23),
         ButtonFontColor = Color.Black,
         DisabledButtonColor = Color.FromArgb(255, 60, 60, 60),
-        TimerColor = Color.White,
-        MoneyFontColor = Color.White
+        TimerColor = Color.Yellow,
+        MoneyFontColor = Color.Magenta
     };
 
     public static ColorTheme Halloween { get; } = new()
@@ -118,8 +116,8 @@ public static class ColorThemePalette
         ButtonColor = Color.FromArgb(255, 180, 30, 30),
         ButtonFontColor = Color.White,
         DisabledButtonColor = Color.FromArgb(255, 128, 128, 128),
-        TimerColor = Color.White,
-        MoneyFontColor = Color.White
+        TimerColor = Color.Gold,
+        MoneyFontColor = Color.OrangeRed
     };
 
     public static ColorTheme MutedHalloween { get; } = new()
@@ -131,7 +129,7 @@ public static class ColorThemePalette
         ButtonColor = Color.FromArgb(255, 140, 70, 70),
         ButtonFontColor = Color.White,
         DisabledButtonColor = Color.FromArgb(255, 128, 128, 128),
-        TimerColor = Color.White,
-        MoneyFontColor = Color.White
+        TimerColor = Color.DarkKhaki,
+        MoneyFontColor = Color.DarkOrange
     };
 }

@@ -6,7 +6,7 @@ public static partial class ColorThemeManager
     {
         Dark,
         Light,
-        OceanBreeze,
+        Ocean,
         Sunset,
         RoseGarden,
         Winter,
