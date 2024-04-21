@@ -1,16 +1,16 @@
-using System.Reflection;
+using Timer = System.Windows.Forms.Timer;
 
 namespace WinForms_Pay_Timer;
 
 public partial class FormMain : Form
 {
-    DateTime timerStartTime;
-    TimeSpan elapsedTime => DateTime.Now - timerStartTime;
+    StateManager stateManager;
+    public DateTime TimerStartTime { get; set; }
+    TimeSpan elapsedTime => DateTime.Now - TimerStartTime;
 
     TimeCard currentJobTimeCard;
     List<TimeCard> timeCardsThisJob = new();
     List<TimeCard> timeCardsCompletedJobs = new();
-    public FormMain() => InitializeComponent();
 
     const int ProjectNameColumnWidth = 120;
     const int HourlyRateColumnWidth = 80;
@@ -23,6 +23,15 @@ public partial class FormMain : Form
     const string DefaultValueForMoneyDisplay = "$0.00";
     const string DefaultValueForTimerDisplay = "00:00:00";
 
+    public Timer TimerUpdateTimerText => timerUpdateTimerText;
+    public Button ButtonTimerStart => buttonTimerStart;
+    public Button ButtonTimerPause => buttonTimerPause;
+    public Button ButtonStartNewJob => buttonStartNewJob;
+    public Button ButtonTimerComplete => buttonTimerComplete;
+    public Button ButtonTimerReset => buttonTimerReset;
+    public Button ButtonCancelJob => buttonCancelJob;
+
+    public FormMain() => InitializeComponent();
     void FormMain_Load(object sender, EventArgs e)
     {
         listViewTimeCards.View = View.Details;
@@ -44,18 +53,21 @@ public partial class FormMain : Form
         listViewCompletedJobs.Columns.Add("Hourly Rate", HourlyRateColumnWidth);
         listViewCompletedJobs.Columns.Add("Time Spent", TimeSpentColumnWidth);
         listViewCompletedJobs.Columns.Add("Money Earned", MoneyEarnedColumnWidth);
+
+        stateManager = new(this);
     }
 
     void buttonTimerStart_Click(object sender, EventArgs e)
     {
-        timerStartTime = DateTime.Now;
-        timerUpdateTimerText.Start();
-        buttonTimerStart.Enabled = false;
-        buttonTimerPause.Enabled = true;
-        buttonStartNewJob.Enabled = false;
-        buttonTimerComplete.Enabled = true;
-        buttonTimerReset.Enabled = true;
-        buttonCancelJob.Enabled = true;
+        stateManager.SwapState(StateManager.States.Started);
+        //timerStartTime = DateTime.Now;
+        //timerUpdateTimerText.Start();
+        //buttonTimerStart.Enabled = false;
+        //buttonTimerPause.Enabled = true;
+        //buttonStartNewJob.Enabled = false;
+        //buttonTimerComplete.Enabled = true;
+        //buttonTimerReset.Enabled = true;
+        //buttonCancelJob.Enabled = true;
     }
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
@@ -88,9 +100,11 @@ public partial class FormMain : Form
         ProjectName = currentJobTimeCard.ProjectName,
         HourlyRate = currentJobTimeCard.HourlyRate,
         TimeSpentWorking = elapsedTime,
-        StartTime = timerStartTime,
+        StartTime = TimerStartTime,
         StopTime = DateTime.Now
     };
+
+
 
     void RefreshListView()
     {
