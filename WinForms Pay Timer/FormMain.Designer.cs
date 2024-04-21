@@ -38,6 +38,8 @@ partial class FormMain
         timerUpdateTimerText = new System.Windows.Forms.Timer(components);
         buttonStartNewJob = new Button();
         labelMoneyEarned = new Label();
+        listViewCompletedJobs = new ListView();
+        labelGrandTotal = new Label();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -87,7 +89,7 @@ partial class FormMain
         // 
         listViewTimeCards.Location = new Point(10, 161);
         listViewTimeCards.Name = "listViewTimeCards";
-        listViewTimeCards.Size = new Size(473, 123);
+        listViewTimeCards.Size = new Size(608, 123);
         listViewTimeCards.TabIndex = 8;
         listViewTimeCards.UseCompatibleStateImageBehavior = false;
         // 
@@ -100,6 +102,7 @@ partial class FormMain
         buttonTimerComplete.TabIndex = 9;
         buttonTimerComplete.Text = "Complete";
         buttonTimerComplete.UseVisualStyleBackColor = true;
+        buttonTimerComplete.Click += buttonTimerComplete_Click;
         // 
         // timerUpdateTimerText
         // 
@@ -128,11 +131,33 @@ partial class FormMain
         labelMoneyEarned.Text = "$0.00";
         labelMoneyEarned.TextAlign = ContentAlignment.TopCenter;
         // 
+        // listViewCompletedJobs
+        // 
+        listViewCompletedJobs.Location = new Point(10, 288);
+        listViewCompletedJobs.Name = "listViewCompletedJobs";
+        listViewCompletedJobs.Size = new Size(608, 123);
+        listViewCompletedJobs.TabIndex = 12;
+        listViewCompletedJobs.UseCompatibleStateImageBehavior = false;
+        // 
+        // labelGrandTotal
+        // 
+        labelGrandTotal.AutoSize = true;
+        labelGrandTotal.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        labelGrandTotal.ForeColor = Color.Green;
+        labelGrandTotal.Location = new Point(403, 123);
+        labelGrandTotal.Name = "labelGrandTotal";
+        labelGrandTotal.Size = new Size(78, 35);
+        labelGrandTotal.TabIndex = 13;
+        labelGrandTotal.Text = "$0.00";
+        labelGrandTotal.TextAlign = ContentAlignment.TopCenter;
+        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(495, 296);
+        ClientSize = new Size(637, 423);
+        Controls.Add(labelGrandTotal);
+        Controls.Add(listViewCompletedJobs);
         Controls.Add(labelMoneyEarned);
         Controls.Add(buttonStartNewJob);
         Controls.Add(buttonTimerComplete);
@@ -158,4 +183,6 @@ partial class FormMain
     private System.Windows.Forms.Timer timerUpdateTimerText;
     private Button buttonStartNewJob;
     private Label labelMoneyEarned;
+    private ListView listViewCompletedJobs;
+    private Label labelGrandTotal;
 }
