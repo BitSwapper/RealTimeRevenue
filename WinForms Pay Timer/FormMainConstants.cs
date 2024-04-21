@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer;
+﻿namespace RealTime_Revenue;
 
 public static class FormMainConstants
 {

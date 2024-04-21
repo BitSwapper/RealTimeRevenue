@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer.ColorManagement;
+﻿namespace RealTime_Revenue.ColorManagement;
 
 public class ColorTheme
 {

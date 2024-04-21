@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer.TimeManagement;
+﻿namespace RealTime_Revenue.TimeManagement;
 
 public class TimeCard
 {

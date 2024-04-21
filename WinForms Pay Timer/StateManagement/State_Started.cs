@@ -1,6 +1,6 @@
-﻿using WinForms_Pay_Timer.TimeManagement;
+﻿using RealTime_Revenue.TimeManagement;
 
-namespace WinForms_Pay_Timer.StateManagement;
+namespace RealTime_Revenue.StateManagement;
 
 public class State_Started : BaseState<StateManager>
 {

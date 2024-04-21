@@ -1,6 +1,6 @@
-﻿using WinForms_Pay_Timer.ColorManagement;
+﻿using RealTime_Revenue.ColorManagement;
 
-namespace WinForms_Pay_Timer;
+namespace RealTime_Revenue;
 
 public partial class JobStarter : Form
 {

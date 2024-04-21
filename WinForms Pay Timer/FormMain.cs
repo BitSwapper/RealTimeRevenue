@@ -1,10 +1,10 @@
-using WinForms_Pay_Timer.ColorManagement;
-using WinForms_Pay_Timer.StateManagement;
-using WinForms_Pay_Timer.TimeManagement;
-using static WinForms_Pay_Timer.ColorManagement.ColorThemeManager;
+using RealTime_Revenue.ColorManagement;
+using RealTime_Revenue.StateManagement;
+using RealTime_Revenue.TimeManagement;
+using static RealTime_Revenue.ColorManagement.ColorThemeManager;
 using Timer = System.Windows.Forms.Timer;
 
-namespace WinForms_Pay_Timer;
+namespace RealTime_Revenue;
 
 public partial class FormMain : Form
 {
@@ -28,7 +28,6 @@ public partial class FormMain : Form
     void FormMain_Load(object sender, EventArgs e)
     {
         ColorThemeManager.InitColors(this);
-
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
         comboBox1.DataSource = Enum.GetValues(typeof(ThemeChoice));
@@ -97,6 +96,8 @@ public partial class FormMain : Form
     }
 
     void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://github.com/BitSwapper");
+
+    void linkLabelDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://buymeacoffee.com/bitswapper");
 
     static void OpenLink(string link)
     {

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using WinForms_Pay_Timer.ColorManagement;
+using RealTime_Revenue.ColorManagement;
 
-namespace WinForms_Pay_Timer.StateManagement;
+namespace RealTime_Revenue.StateManagement;
 
 public class State_InitProgram : BaseState<StateManager>
 {

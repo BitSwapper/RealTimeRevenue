@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer.StateManagement;
+﻿namespace RealTime_Revenue.StateManagement;
 
 public abstract class BaseState<T>
 {

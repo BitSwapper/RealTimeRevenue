@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer;
+﻿namespace RealTime_Revenue;
 
 partial class FormMain
 {
@@ -44,6 +44,7 @@ partial class FormMain
         label1 = new Label();
         comboBox1 = new ComboBox();
         linkLabel1 = new LinkLabel();
+        linkLabelDonate = new LinkLabel();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -204,11 +205,24 @@ partial class FormMain
         linkLabel1.Text = "Github";
         linkLabel1.LinkClicked += linkLabelGithub_LinkClicked;
         // 
+        // linkLabelDonate
+        // 
+        linkLabelDonate.AutoSize = true;
+        linkLabelDonate.LinkColor = Color.FromArgb(128, 128, 255);
+        linkLabelDonate.Location = new Point(444, 339);
+        linkLabelDonate.Name = "linkLabelDonate";
+        linkLabelDonate.Size = new Size(45, 15);
+        linkLabelDonate.TabIndex = 18;
+        linkLabelDonate.TabStop = true;
+        linkLabelDonate.Text = "Donate";
+        linkLabelDonate.LinkClicked += linkLabelDonate_LinkClicked;
+        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(496, 358);
+        Controls.Add(linkLabelDonate);
         Controls.Add(linkLabel1);
         Controls.Add(comboBox1);
         Controls.Add(label1);
@@ -226,7 +240,7 @@ partial class FormMain
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         Name = "FormMain";
-        Text = "WinForms Pay Timer 1.0";
+        Text = "RealTime Revenue 1.01";
         Load += FormMain_Load;
         ResumeLayout(false);
         PerformLayout();
@@ -247,4 +261,5 @@ partial class FormMain
     Label label1;
     ComboBox comboBox1;
     LinkLabel linkLabel1;
+    private LinkLabel linkLabelDonate;
 }
