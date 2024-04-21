@@ -7,21 +7,32 @@ public class State_Completed : BaseState<StateManager>
     public override void EnterState(StateManager stateManager)
     {
         stateManager.Form.ButtonTimerPause.PerformClick();
-
-        stateManager.Form.ButtonStartNewJob.Enabled = true;
-        stateManager.Form.ButtonTimerPause.Enabled = false;
-        stateManager.Form.ButtonTimerReset.Enabled = false;
-        stateManager.Form.ButtonTimerStart.Enabled = false;
-        stateManager.Form.ButtonTimerComplete.Enabled = false;
-
-        stateManager.Form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
-        stateManager.Form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
+        ToggleButtonStates(stateManager);
+        ResetCashLabels(stateManager);
 
         var filteredJobs = stateManager.Form.TimeKeeper.TimeCardsThisJob.Where((t) => t.TimeSpentWorking.TotalMilliseconds > 100).ToList();
-
         if(filteredJobs.Count == 0) return;
+        TimeCard combinedTimeCard = GetTotalJobCombinedTimeCard(stateManager);
+        ListViewItem listViewItem = GetLviForTimeCard(combinedTimeCard);
+        RemoveCurrentJobDataAndAddCompletedJob(stateManager, combinedTimeCard, listViewItem);
 
-        var combinedTimeCard = new TimeCard
+
+        static void ToggleButtonStates(StateManager stateManager)
+        {
+            stateManager.Form.ButtonStartNewJob.Enabled = true;
+            stateManager.Form.ButtonTimerPause.Enabled = false;
+            stateManager.Form.ButtonTimerReset.Enabled = false;
+            stateManager.Form.ButtonTimerStart.Enabled = false;
+            stateManager.Form.ButtonTimerComplete.Enabled = false;
+        }
+
+        static void ResetCashLabels(StateManager stateManager)
+        {
+            stateManager.Form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
+            stateManager.Form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
+        }
+
+        static TimeCard GetTotalJobCombinedTimeCard(StateManager stateManager) => new TimeCard
         {
             ProjectName = stateManager.Form.TimeKeeper.TimeCardsThisJob.First().ProjectName,
             HourlyRate = stateManager.Form.TimeKeeper.TimeCardsThisJob.First().HourlyRate,
@@ -30,20 +41,20 @@ public class State_Completed : BaseState<StateManager>
             StopTime = stateManager.Form.TimeKeeper.TimeCardsThisJob.Max(tc => tc.StopTime),
         };
 
-        var listViewItem = new ListViewItem(new[] {
+        static ListViewItem GetLviForTimeCard(TimeCard combinedTimeCard) => new ListViewItem(new[] {
         combinedTimeCard.ProjectName,
         combinedTimeCard.MoneyEarned.ToString("F2"),
         combinedTimeCard.HourlyRate.ToString("F2"),
-        TimeUtil.FormatTime(combinedTimeCard.TimeSpentWorking),
-        });
+        TimeUtil.FormatTime(combinedTimeCard.TimeSpentWorking),});
 
-        stateManager.Form.ListViewCompletedJobs.Items.Add(listViewItem);
-        stateManager.Form.ListViewCurrentJobTimeCards.Items.Clear();
-
-        stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Add(combinedTimeCard);
-        stateManager.Form.TimeKeeper.TimeCardsThisJob.Clear();
-
-        stateManager.Form.TimeKeeper.CurrentJobTimeCard = new();
+        static void RemoveCurrentJobDataAndAddCompletedJob(StateManager stateManager, TimeCard combinedTimeCard, ListViewItem listViewItem)
+        {
+            stateManager.Form.ListViewCompletedJobs.Items.Add(listViewItem);
+            stateManager.Form.ListViewCurrentJobTimeCards.Items.Clear();
+            stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Add(combinedTimeCard);
+            stateManager.Form.TimeKeeper.TimeCardsThisJob.Clear();
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard = new();
+        }
     }
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
