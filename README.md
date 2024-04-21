@@ -1,3 +1,11 @@
-![a](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/69bb3389-e810-46c4-ab3e-e4f84525bbc4)
-![B](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/6c6df532-8966-415e-b744-2e2876345863)
-![C](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/765458bd-dde0-4b96-aafe-fa3bf49078e0)
+![aa](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/f83af76a-6c90-4e2c-8e4f-4655fdf1bf81)
+Live calculation of earnings.
+
+![bb](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/d7400302-bed9-431c-a889-9ceea3fe0156)
+Tracks break times (when paused)
+
+![ab](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/79a7dc22-e48c-4e3c-ac93-e221c1e8693e)
+
+
+![ac](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/bfea418a-7c8c-44c2-a130-7946c41e10a1)
+Theme Choices
