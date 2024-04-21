@@ -36,7 +36,7 @@ public class State_Started : BaseState<StateManager>
     public override void EnterState(StateManager stateManager)
     {
         stateManager.Form.TimerStartTime = DateTime.Now;
-        stateManager.Form.TimerUpdateTimerText.Start();
+        //stateManager.Form.TimerUpdateTimerText.Start();
         stateManager.Form.ButtonTimerStart.Enabled = false;
         stateManager.Form.ButtonTimerPause.Enabled = true;
         stateManager.Form.ButtonStartNewJob.Enabled = false;
@@ -63,7 +63,7 @@ public class State_Paused : BaseState<StateManager>
         stateManager.Form.ButtonTimerStart.Enabled = true;
         stateManager.Form.ButtonTimerPause.Enabled = false;
 
-        stateManager.Form.TimerUpdateTimerText.Stop();
+        //stateManager.Form.TimerUpdateTimerText.Stop();
         TimeCard newTimeCard = stateManager.Form.CreateTimecardForCurJob();
 
         stateManager.Form.TimeCardsThisJob.Add(newTimeCard);
@@ -80,7 +80,7 @@ public class State_Completed : BaseState<StateManager>
     {
         stateManager.Form.ButtonTimerPause.PerformClick();
 
-        stateManager.Form.TimerUpdateTimerText.Stop();
+        //stateManager.Form.TimerUpdateTimerText.Stop();
         stateManager.Form.ButtonStartNewJob.Enabled = true;
         stateManager.Form.ButtonTimerPause.Enabled = false;
         stateManager.Form.ButtonTimerReset.Enabled = false;
@@ -125,7 +125,7 @@ public class State_Reset : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager)
     {
-        stateManager.Form.TimerUpdateTimerText.Stop();
+        //stateManager.Form.TimerUpdateTimerText.Stop();
         stateManager.Form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
         stateManager.Form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
         stateManager.Form.LabelGrandTotal.Text = FormMainConstants.DefaultValueForMoneyDisplay;
@@ -169,6 +169,8 @@ public class State_InitProgram : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager)
     {
+        stateManager.Form.TimerUpdateTimerText.Start();
+
         stateManager.Form.ListViewTimeCards.View = View.Details;
         stateManager.Form.ListViewTimeCards.GridLines = true;
         stateManager.Form.ListViewTimeCards.FullRowSelect = true;
