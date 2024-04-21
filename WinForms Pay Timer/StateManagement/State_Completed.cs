@@ -32,9 +32,10 @@ public class State_Completed : BaseState<StateManager>
 
         var listViewItem = new ListViewItem(new[] {
         combinedTimeCard.ProjectName,
+        combinedTimeCard.MoneyEarned.ToString("F2"),
         combinedTimeCard.HourlyRate.ToString("F2"),
         TimeUtil.FormatTime(combinedTimeCard.TimeSpentWorking),
-        combinedTimeCard.MoneyEarned.ToString("F2")});
+        });
 
         stateManager.Form.ListViewCompletedJobs.Items.Add(listViewItem);
         stateManager.Form.ListViewCurrentJobTimeCards.Items.Clear();

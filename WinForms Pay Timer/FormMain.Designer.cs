@@ -57,7 +57,7 @@ partial class FormMain
         // buttonTimerPause
         // 
         buttonTimerPause.Enabled = false;
-        buttonTimerPause.Location = new Point(200, 46);
+        buttonTimerPause.Location = new Point(183, 46);
         buttonTimerPause.Name = "buttonTimerPause";
         buttonTimerPause.Size = new Size(75, 23);
         buttonTimerPause.TabIndex = 5;
@@ -68,7 +68,7 @@ partial class FormMain
         // buttonTimerReset
         // 
         buttonTimerReset.Enabled = false;
-        buttonTimerReset.Location = new Point(404, 46);
+        buttonTimerReset.Location = new Point(353, 46);
         buttonTimerReset.Name = "buttonTimerReset";
         buttonTimerReset.Size = new Size(75, 23);
         buttonTimerReset.TabIndex = 6;
@@ -91,14 +91,14 @@ partial class FormMain
         // 
         listViewTimeCards.Location = new Point(12, 75);
         listViewTimeCards.Name = "listViewTimeCards";
-        listViewTimeCards.Size = new Size(551, 123);
+        listViewTimeCards.Size = new Size(502, 123);
         listViewTimeCards.TabIndex = 8;
         listViewTimeCards.UseCompatibleStateImageBehavior = false;
         // 
         // buttonTimerComplete
         // 
         buttonTimerComplete.Enabled = false;
-        buttonTimerComplete.Location = new Point(302, 46);
+        buttonTimerComplete.Location = new Point(268, 46);
         buttonTimerComplete.Name = "buttonTimerComplete";
         buttonTimerComplete.Size = new Size(75, 23);
         buttonTimerComplete.TabIndex = 9;
@@ -113,7 +113,7 @@ partial class FormMain
         // 
         // buttonStartNewJob
         // 
-        buttonStartNewJob.Location = new Point(235, 17);
+        buttonStartNewJob.Location = new Point(210, 12);
         buttonStartNewJob.Name = "buttonStartNewJob";
         buttonStartNewJob.Size = new Size(104, 23);
         buttonStartNewJob.TabIndex = 10;
@@ -137,7 +137,7 @@ partial class FormMain
         // 
         listViewCompletedJobs.Location = new Point(12, 202);
         listViewCompletedJobs.Name = "listViewCompletedJobs";
-        listViewCompletedJobs.Size = new Size(551, 123);
+        listViewCompletedJobs.Size = new Size(502, 123);
         listViewCompletedJobs.TabIndex = 12;
         listViewCompletedJobs.UseCompatibleStateImageBehavior = false;
         // 
@@ -146,7 +146,7 @@ partial class FormMain
         labelGrandTotal.AutoSize = true;
         labelGrandTotal.Font = new Font("Segoe UI", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         labelGrandTotal.ForeColor = Color.Green;
-        labelGrandTotal.Location = new Point(485, 37);
+        labelGrandTotal.Location = new Point(436, 37);
         labelGrandTotal.Name = "labelGrandTotal";
         labelGrandTotal.Size = new Size(78, 35);
         labelGrandTotal.TabIndex = 13;
@@ -156,7 +156,7 @@ partial class FormMain
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(488, 24);
+        label1.Location = new Point(439, 24);
         label1.Name = "label1";
         label1.Size = new Size(67, 15);
         label1.TabIndex = 14;
@@ -166,7 +166,7 @@ partial class FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(570, 343);
+        ClientSize = new Size(524, 343);
         Controls.Add(label1);
         Controls.Add(labelGrandTotal);
         Controls.Add(listViewCompletedJobs);
