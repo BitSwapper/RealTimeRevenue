@@ -8,9 +8,9 @@ public partial class FormMain : Form
     public DateTime TimerStartTime { get; set; }
     TimeSpan elapsedTime => DateTime.Now - TimerStartTime;
 
-    TimeCard currentJobTimeCard;
-    List<TimeCard> timeCardsThisJob = new();
-    List<TimeCard> timeCardsCompletedJobs = new();
+    public TimeCard CurrentJobTimeCard { get; set; }
+    public List<TimeCard> TimeCardsThisJob { get; set; } = new();
+    public List<TimeCard> TimeCardsCompletedJobs { get; set; } = new();
 
     const int ProjectNameColumnWidth = 120;
     const int HourlyRateColumnWidth = 80;
@@ -60,22 +60,14 @@ public partial class FormMain : Form
     void buttonTimerStart_Click(object sender, EventArgs e)
     {
         stateManager.SwapState(StateManager.States.Started);
-        //timerStartTime = DateTime.Now;
-        //timerUpdateTimerText.Start();
-        //buttonTimerStart.Enabled = false;
-        //buttonTimerPause.Enabled = true;
-        //buttonStartNewJob.Enabled = false;
-        //buttonTimerComplete.Enabled = true;
-        //buttonTimerReset.Enabled = true;
-        //buttonCancelJob.Enabled = true;
     }
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
         labelTimerDisplay.Text = FormatTime(elapsedTime);
 
-        var totalEarnedThisJob = (timeCardsThisJob.Sum((t) => t.MoneyEarned) + currentJobTimeCard.HourlyRate * (decimal)elapsedTime.TotalHours);
-        var totalEarnedOnCompletedJobs = (timeCardsCompletedJobs.Sum((t) => t.MoneyEarned));
+        var totalEarnedThisJob = (TimeCardsThisJob.Sum((t) => t.MoneyEarned) + CurrentJobTimeCard.HourlyRate * (decimal)elapsedTime.TotalHours);
+        var totalEarnedOnCompletedJobs = (TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned));
         var GrandTotal = totalEarnedThisJob + totalEarnedOnCompletedJobs;
 
         labelMoneyEarned.Text = "$" + totalEarnedThisJob.ToString("F2");
@@ -84,21 +76,22 @@ public partial class FormMain : Form
 
     void buttonTimerPause_Click(object sender, EventArgs e)
     {
-        buttonTimerStart.Enabled = true;
-        buttonTimerPause.Enabled = false;
+        stateManager.SwapState(StateManager.States.Paused);
+        //buttonTimerStart.Enabled = true;
+        //buttonTimerPause.Enabled = false;
 
-        timerUpdateTimerText.Stop();
-        TimeCard newTimeCard = CreateTimecardForCurJob();
+        //timerUpdateTimerText.Stop();
+        //TimeCard newTimeCard = CreateTimecardForCurJob();
 
-        timeCardsThisJob.Add(newTimeCard);
+        //timeCardsThisJob.Add(newTimeCard);
 
-        RefreshListView();
+        //RefreshListView();
     }
 
-    private TimeCard CreateTimecardForCurJob() => new TimeCard
+    public TimeCard CreateTimecardForCurJob() => new TimeCard
     {
-        ProjectName = currentJobTimeCard.ProjectName,
-        HourlyRate = currentJobTimeCard.HourlyRate,
+        ProjectName = CurrentJobTimeCard.ProjectName,
+        HourlyRate = CurrentJobTimeCard.HourlyRate,
         TimeSpentWorking = elapsedTime,
         StartTime = TimerStartTime,
         StopTime = DateTime.Now
@@ -106,11 +99,11 @@ public partial class FormMain : Form
 
 
 
-    void RefreshListView()
+    public void RefreshListView()
     {
         listViewTimeCards.Items.Clear();
 
-        foreach(var timeCard in timeCardsThisJob.OrderByDescending(tc => tc.StopTime))
+        foreach(var timeCard in TimeCardsThisJob.OrderByDescending(tc => tc.StopTime))
         {
             var listViewItem = new ListViewItem(new[] {
             timeCard.ProjectName,
@@ -134,9 +127,9 @@ public partial class FormMain : Form
                 decimal hourlyRate = jobStartedForm.HourlyRate;
                 string projectName = jobStartedForm.ProjectName;
 
-                currentJobTimeCard = new();
-                currentJobTimeCard.ProjectName = projectName;
-                currentJobTimeCard.HourlyRate = hourlyRate;
+                CurrentJobTimeCard = new();
+                CurrentJobTimeCard.ProjectName = projectName;
+                CurrentJobTimeCard.HourlyRate = hourlyRate;
 
                 buttonTimerStart.Enabled = true;
                 buttonTimerComplete.Enabled = false;
@@ -163,11 +156,11 @@ public partial class FormMain : Form
 
         var combinedTimeCard = new TimeCard
         {
-            ProjectName = timeCardsThisJob.First().ProjectName,
-            HourlyRate = timeCardsThisJob.First().HourlyRate,
-            TimeSpentWorking = TimeSpan.FromTicks(timeCardsThisJob.Sum(tc => tc.TimeSpentWorking.Ticks)),
-            StartTime = timeCardsThisJob.Min(tc => tc.StartTime),
-            StopTime = timeCardsThisJob.Max(tc => tc.StopTime),
+            ProjectName = TimeCardsThisJob.First().ProjectName,
+            HourlyRate = TimeCardsThisJob.First().HourlyRate,
+            TimeSpentWorking = TimeSpan.FromTicks(TimeCardsThisJob.Sum(tc => tc.TimeSpentWorking.Ticks)),
+            StartTime = TimeCardsThisJob.Min(tc => tc.StartTime),
+            StopTime = TimeCardsThisJob.Max(tc => tc.StopTime),
         };
 
         var listViewItem = new ListViewItem(new[] {
@@ -179,10 +172,10 @@ public partial class FormMain : Form
         listViewCompletedJobs.Items.Add(listViewItem);
         listViewTimeCards.Items.Clear();
 
-        timeCardsCompletedJobs.Add(combinedTimeCard);
-        timeCardsThisJob.Clear();
+        TimeCardsCompletedJobs.Add(combinedTimeCard);
+        TimeCardsThisJob.Clear();
 
-        currentJobTimeCard = new();
+        CurrentJobTimeCard = new();
     }
 
     private string FormatTime(TimeSpan elapsedTime) => $"{((int)elapsedTime.TotalHours).ToString("D2")}:{((int)elapsedTime.TotalMinutes % 60).ToString("D2")}:{(elapsedTime.TotalSeconds % 60).ToString("00")}";

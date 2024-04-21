@@ -47,7 +47,18 @@ public class State_Started : BaseState<StateManager>
 
 public class State_Paused : BaseState<StateManager>
 {
-    public override void EnterState(StateManager stateManager) { }
+    public override void EnterState(StateManager stateManager) 
+    {
+        stateManager.form.ButtonTimerStart.Enabled = true;
+        stateManager.form.ButtonTimerPause.Enabled = false;
+
+        stateManager.form.TimerUpdateTimerText.Stop();
+        TimeCard newTimeCard = stateManager.form.CreateTimecardForCurJob();
+
+        stateManager.form.TimeCardsThisJob.Add(newTimeCard);
+
+        stateManager.form.RefreshListView();
+    }
     public override void ExitState(StateManager stateManager) { }
     public override void FixedUpdateState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
