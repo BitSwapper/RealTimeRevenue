@@ -5,7 +5,7 @@ Live calculation of earnings.
 Tracks break times (when paused)
 
 ![ab](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/79a7dc22-e48c-4e3c-ac93-e221c1e8693e)
-
+Ez Job Completed (Moved to completed panel). New Job Started.
 
 ![ac](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/bfea418a-7c8c-44c2-a130-7946c41e10a1)
 Theme Choices
