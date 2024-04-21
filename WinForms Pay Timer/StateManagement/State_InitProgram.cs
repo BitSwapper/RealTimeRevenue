@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using WinForms_Pay_Timer.ColorManagement;
 
 namespace WinForms_Pay_Timer.StateManagement;
 
@@ -17,6 +18,7 @@ public class State_InitProgram : BaseState<StateManager>
         stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
         stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Start Time", FormMainConstants.TimeSpentStartStopColumnWidth);
         stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Stop Time", FormMainConstants.TimeSpentStartStopColumnWidth);
+        stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("", FormMainConstants.EmpytySpaceTop);
 
         stateManager.Form.ListViewCompletedJobs.View = View.Details;
         stateManager.Form.ListViewCompletedJobs.GridLines = true;
@@ -25,28 +27,29 @@ public class State_InitProgram : BaseState<StateManager>
         stateManager.Form.ListViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
         stateManager.Form.ListViewCompletedJobs.Columns.Add("Rate", FormMainConstants.HourlyRateColumnWidth);
         stateManager.Form.ListViewCompletedJobs.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
+        stateManager.Form.ListViewCompletedJobs.Columns.Add("", FormMainConstants.EmpytySpaceBottom);
 
         var doubleBufferedProperty = typeof(ListView).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
         doubleBufferedProperty!.SetValue(stateManager.Form.ListViewCurrentJobTimeCards, true, null);
         doubleBufferedProperty!.SetValue(stateManager.Form.ListViewCompletedJobs, true, null);
 
-        //stateManager.Form.ButtonTimerStart.EnabledChanged += Control_EnabledChanged;
+        stateManager.Form.ListViewCurrentJobTimeCards.OwnerDraw = true;
+        stateManager.Form.ListViewCurrentJobTimeCards.DrawColumnHeader += listView_DrawColumnHeader;
+
+        stateManager.Form.ListViewCompletedJobs.OwnerDraw = true;
+        stateManager.Form.ListViewCompletedJobs.DrawColumnHeader += listView_DrawColumnHeader;
     }
+
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 
-    //private void Control_EnabledChanged(object sender, EventArgs e)
-    //{
-    //    Control control = (Control)sender;
-    //    if(!control.Enabled)
-    //    {
-    //        control.BackColor = Color.Blue; // Set the background color to gray
-    //        control.ForeColor = Color.White; // Set the foreground color to white
-    //    }
-    //    else
-    //    {
-    //        control.BackColor = Color.Blue; // Set the background color to white
-    //        control.ForeColor = Color.Black; // Set the foreground color to black
-    //    }
-    //}
+    void listView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+    {
+        e.DrawBackground();
+        e.Graphics.FillRectangle(new SolidBrush(ColorThemeManager.curTheme.ButtonColor), e.Bounds);
+
+        Rectangle textBounds = e.Bounds;
+        textBounds.X += 4;
+        e.Graphics.DrawString(e.Header.Text, e.Font, new SolidBrush(ColorThemeManager.curTheme.FontColor), textBounds);
+    }
 }

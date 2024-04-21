@@ -36,6 +36,18 @@ public partial class FormMain : Form
         initd = true;
     }
 
+    protected override void WndProc(ref Message m)
+    {
+        if(m.Msg == 0x0014) // WM_ERASEBKGND
+        {
+            using(var g = Graphics.FromHdc(m.WParam))
+            {
+                g.Clear(Color.LightBlue);
+            }
+        }
+        base.WndProc(ref m);
+    }
+
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
         stateManager.UpdateState();

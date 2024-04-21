@@ -9,8 +9,9 @@ public static partial class ColorThemeManager
         OceanBreeze,
         Sunset,
         Midnight,
-        Rose,
+        RoseGarden,
         Winter,
         Neon,
+        Halloween
     }
 }

@@ -184,9 +184,9 @@ partial class FormMain
         comboBox1.FormattingEnabled = true;
         comboBox1.ItemHeight = 15;
         comboBox1.Items.AddRange(new object[] { "Light", "Dark" });
-        comboBox1.Location = new Point(448, 7);
+        comboBox1.Location = new Point(403, 7);
         comboBox1.Name = "comboBox1";
-        comboBox1.Size = new Size(58, 23);
+        comboBox1.Size = new Size(103, 23);
         comboBox1.TabIndex = 15;
         comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         // 

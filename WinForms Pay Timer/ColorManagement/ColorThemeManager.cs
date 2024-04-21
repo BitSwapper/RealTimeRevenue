@@ -2,6 +2,8 @@
 
 public static partial class ColorThemeManager
 {
+    public static ColorTheme curTheme;
+
     public static ColorTheme Light { get; } = new()
     {
         UseDarkMode = false,
@@ -83,12 +85,23 @@ public static partial class ColorThemeManager
     };
 
 
+    public static ColorTheme Halloween { get; } = new()
+    {
+        UseDarkMode = false,
+        ColorBg = Color.FromArgb(255, 0, 0, 0),
+        FontColor = Color.FromArgb(255, 255, 165, 0),
+        ButtonColor = Color.FromArgb(255, 255, 69, 0),
+        ButtonFontColor = Color.White,
+        DisabledButtonColor = Color.FromArgb(255, 128, 128, 128)
+    };
+
+
     public static void InitColors(Form form)
     {
-        ColorTheme theme = GetTheme((ThemeMode)Properties.Settings.Default.ColorThemeOption);
-        form.BackColor = theme.ColorBg;
-        form.ForeColor = theme.FontColor;
-        ChangeControlsColor(form, theme.ColorBg, theme.FontColor, theme.ButtonColor, theme.ButtonFontColor, theme.DisabledButtonColor);
+        curTheme = GetTheme((ThemeMode)Properties.Settings.Default.ColorThemeOption);
+        form.BackColor = curTheme.ColorBg;
+        form.ForeColor = curTheme.FontColor;
+        ChangeControlsColor(form, curTheme.ColorBg, curTheme.FontColor, curTheme.ButtonColor, curTheme.ButtonFontColor, curTheme.DisabledButtonColor);
     }
 
     static ColorTheme GetTheme(ThemeMode mode)
@@ -105,12 +118,15 @@ public static partial class ColorThemeManager
                 return Sunset;
             case ThemeMode.Midnight:
                 return Midnight;
-            case ThemeMode.Rose:
+            case ThemeMode.RoseGarden:
                 return RoseGarden;
             case ThemeMode.Winter:
                 return Winter;
             case ThemeMode.Neon:
                 return Neon;
+            case ThemeMode.Halloween:
+                return Halloween;
+
             default:
                 return Light;
         }
@@ -121,42 +137,42 @@ public static partial class ColorThemeManager
     {
         foreach(Control childControl in control.Controls)
         {
-            if(childControl is Button)
+            if(childControl is Button button)
             {
-                Button button = (Button)childControl;
                 button.BackColor = buttonColor;
                 button.ForeColor = buttonFontColor;
                 if(!button.Enabled)
                 {
-                    button.BackColor = disabledButtonColor; // Set the disabled color
+                    button.BackColor = disabledButtonColor;
                 }
-                button.EnabledChanged += (sender, e) => // Handle the EnabledChanged event
+                button.EnabledChanged += (sender, e) =>
                 {
-                    Button btn = (Button)sender;
+                    Button btn = (Button)sender!;
                     if(btn.Enabled)
                     {
-                        btn.BackColor = buttonColor; // Reset the color when re-enabled
+                        btn.BackColor = buttonColor;
                         btn.ForeColor = buttonFontColor;
                     }
                     else
-                    {
-                        btn.BackColor = disabledButtonColor; // Set the disabled color
-                    }
+                        btn.BackColor = disabledButtonColor;
                 };
             }
-            else if(childControl is Form)
+            else if(childControl is Form form)
             {
-                Form form = (Form)childControl;
                 form.BackColor = bgColor;
                 form.ForeColor = fontColor;
             }
-            else if(childControl is Label)
+            else if(childControl is Label label)
             {
-                Label label = (Label)childControl;
                 if(label.Name.Contains("Money"))
                     continue;
                 label.BackColor = bgColor;
                 label.ForeColor = fontColor;
+            }
+            else if(childControl is ListView LV)
+            {
+                LV.ForeColor = fontColor;
+                LV.BackColor = bgColor;
             }
 
             if(childControl.Controls.Count > 0)
