@@ -29,6 +29,7 @@ partial class FormMain
     void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
         buttonTimerStart = new Button();
         buttonTimerPause = new Button();
         buttonTimerReset = new Button();
@@ -222,9 +223,10 @@ partial class FormMain
         Controls.Add(buttonTimerPause);
         Controls.Add(buttonTimerStart);
         FormBorderStyle = FormBorderStyle.FixedSingle;
+        Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         Name = "FormMain";
-        Text = "WinForms Pay Timer";
+        Text = "WinForms Pay Timer 1.0";
         Load += FormMain_Load;
         ResumeLayout(false);
         PerformLayout();
