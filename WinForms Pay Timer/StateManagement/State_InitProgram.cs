@@ -14,33 +14,6 @@ public class State_InitProgram : BaseState<StateManager>
         SetupCustomListViewAppearance(stateManager);
 
 
-        void SetupCustomListViewAppearance(StateManager stateManager)
-        {
-            stateManager.Form.ListViewCurrentJobTimeCards.OwnerDraw = true;
-            stateManager.Form.ListViewCurrentJobTimeCards.DrawColumnHeader += listView_DrawColumnHeader;
-            stateManager.Form.ListViewCurrentJobTimeCards.DrawSubItem += listView_DrawSubItem;
-
-            stateManager.Form.ListViewCompletedJobs.OwnerDraw = true;
-            stateManager.Form.ListViewCompletedJobs.DrawColumnHeader += listView_DrawColumnHeader;
-            stateManager.Form.ListViewCompletedJobs.DrawSubItem += listView_DrawSubItem;
-
-            void listView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
-            {
-                e.DrawBackground();
-                e.Graphics.FillRectangle(new SolidBrush(ColorThemeManager.CurTheme.ButtonColor), e.Bounds);
-
-                Rectangle textBounds = e.Bounds;
-                textBounds.X += 4;
-                e.Graphics.DrawString(e.Header.Text, e.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColorListViewCaption), textBounds);
-            }
-
-            void listView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
-            {
-                e.DrawBackground();
-                e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColor), e.Bounds);
-            }
-        }
-
         static void EnableDoubleBufferingOnLvis(StateManager stateManager)
         {
             var doubleBufferedProperty = typeof(ListView).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -72,6 +45,33 @@ public class State_InitProgram : BaseState<StateManager>
             stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Start Time", FormMainConstants.TimeSpentStartStopColumnWidth);
             stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Stop Time", FormMainConstants.TimeSpentStartStopColumnWidth);
             stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("", FormMainConstants.EmpytySpaceTop);
+        }
+
+        void SetupCustomListViewAppearance(StateManager stateManager)
+        {
+            stateManager.Form.ListViewCurrentJobTimeCards.OwnerDraw = true;
+            stateManager.Form.ListViewCurrentJobTimeCards.DrawColumnHeader += listView_DrawColumnHeader;
+            stateManager.Form.ListViewCurrentJobTimeCards.DrawSubItem += listView_DrawSubItem;
+
+            stateManager.Form.ListViewCompletedJobs.OwnerDraw = true;
+            stateManager.Form.ListViewCompletedJobs.DrawColumnHeader += listView_DrawColumnHeader;
+            stateManager.Form.ListViewCompletedJobs.DrawSubItem += listView_DrawSubItem;
+
+            void listView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+            {
+                e.DrawBackground();
+                e.Graphics.FillRectangle(new SolidBrush(ColorThemeManager.CurTheme.ButtonColor), e.Bounds);
+
+                Rectangle textBounds = e.Bounds;
+                textBounds.X += 4;
+                e.Graphics.DrawString(e.Header.Text, e.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColorListViewCaption), textBounds);
+            }
+
+            void listView_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+            {
+                e.DrawBackground();
+                e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, new SolidBrush(ColorThemeManager.CurTheme.FontColor), e.Bounds);
+            }
         }
     }
     public override void ExitState(StateManager stateManager) { }

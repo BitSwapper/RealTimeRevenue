@@ -2,7 +2,7 @@
 
 public static partial class ColorThemeManager
 {
-    public enum ThemeMode
+    public enum ThemeChoice
     {
         Dark,
         Light,

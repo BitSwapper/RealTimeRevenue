@@ -8,16 +8,23 @@ public class State_InitNewJob : BaseState<StateManager>
         {
             if(jobStartedForm.ShowDialog() == DialogResult.OK)
             {
-                decimal hourlyRate = jobStartedForm.HourlyRate;
-                string projectName = jobStartedForm.ProjectName;
-
-                stateManager.Form.TimeKeeper.CurrentJobTimeCard = new();
-                stateManager.Form.TimeKeeper.CurrentJobTimeCard.ProjectName = projectName;
-                stateManager.Form.TimeKeeper.CurrentJobTimeCard.HourlyRate = hourlyRate;
-                stateManager.Form.ButtonTimerStart.Enabled = true;
-                stateManager.Form.ButtonTimerComplete.Enabled = false;
-                stateManager.Form.ButtonTimerReset.Enabled = false;
+                SetupCurrentJobTimeCard(stateManager, jobStartedForm.HourlyRate, jobStartedForm.ProjectName);
+                ToggleButtonStates(stateManager);
             }
+        }
+
+        static void ToggleButtonStates(StateManager stateManager)
+        {
+            stateManager.Form.ButtonTimerStart.Enabled = true;
+            stateManager.Form.ButtonTimerComplete.Enabled = false;
+            stateManager.Form.ButtonTimerReset.Enabled = false;
+        }
+
+        static void SetupCurrentJobTimeCard(StateManager stateManager, decimal hourlyRate, string projectName)
+        {
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard = new();
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard.ProjectName = projectName;
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard.HourlyRate = hourlyRate;
         }
     }
 

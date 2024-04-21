@@ -7,19 +7,30 @@ public class State_Started : BaseState<StateManager>
     public override void EnterState(StateManager stateManager)
     {
         stateManager.Form.TimeKeeper.TimerStartTime = DateTime.Now;
-        stateManager.Form.ButtonTimerStart.Enabled = false;
-        stateManager.Form.ButtonTimerPause.Enabled = true;
-        stateManager.Form.ButtonStartNewJob.Enabled = false;
-        stateManager.Form.ButtonTimerComplete.Enabled = true;
-        stateManager.Form.ButtonTimerReset.Enabled = true;
+        ToggleButtonStates(stateManager);
+        SetupCurrentTimecardIfFirstEntry(stateManager);
 
-        if(stateManager.Form.ListViewCurrentJobTimeCards.Items.Count == 0)
+
+        static void ToggleButtonStates(StateManager stateManager)
         {
-            stateManager.Form.TimeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
-            stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
-            stateManager.Form.RefreshListView(true);
+            stateManager.Form.ButtonTimerStart.Enabled = false;
+            stateManager.Form.ButtonTimerPause.Enabled = true;
+            stateManager.Form.ButtonStartNewJob.Enabled = false;
+            stateManager.Form.ButtonTimerComplete.Enabled = true;
+            stateManager.Form.ButtonTimerReset.Enabled = true;
+        }
+
+        static void SetupCurrentTimecardIfFirstEntry(StateManager stateManager)
+        {
+            if(stateManager.Form.ListViewCurrentJobTimeCards.Items.Count == 0)
+            {
+                stateManager.Form.TimeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
+                stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
+                stateManager.Form.RefreshListView(true);
+            }
         }
     }
+
 
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager)

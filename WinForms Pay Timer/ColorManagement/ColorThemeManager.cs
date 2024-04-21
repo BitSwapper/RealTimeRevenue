@@ -6,23 +6,23 @@ public static partial class ColorThemeManager
 
     public static void InitColors(Form form)
     {
-        CurTheme = GetTheme((ThemeMode)Properties.Settings.Default.ColorThemeOption);
+        CurTheme = GetTheme((ThemeChoice)Properties.Settings.Default.ColorThemeOption);
         form.BackColor = CurTheme.ColorBg;
         form.ForeColor = CurTheme.FontColor;
         ChangeControlsColor(form, CurTheme);
     }
 
-    static ColorTheme GetTheme(ThemeMode mode) => mode switch
+    static ColorTheme GetTheme(ThemeChoice mode) => mode switch
     {
-        ThemeMode.Dark => ColorThemePalette.Dark,
-        ThemeMode.Light => ColorThemePalette.Light,
-        ThemeMode.Ocean => ColorThemePalette.Ocean,
-        ThemeMode.Sunset => ColorThemePalette.Sunset,
-        ThemeMode.RoseGarden => ColorThemePalette.RoseGarden,
-        ThemeMode.Winter => ColorThemePalette.Winter,
-        ThemeMode.HighContrast => ColorThemePalette.HighContrast,
-        ThemeMode.Halloween => ColorThemePalette.Halloween,
-        ThemeMode.MutedHalloween => ColorThemePalette.MutedHalloween,
+        ThemeChoice.Dark => ColorThemePalette.Dark,
+        ThemeChoice.Light => ColorThemePalette.Light,
+        ThemeChoice.Ocean => ColorThemePalette.Ocean,
+        ThemeChoice.Sunset => ColorThemePalette.Sunset,
+        ThemeChoice.RoseGarden => ColorThemePalette.RoseGarden,
+        ThemeChoice.Winter => ColorThemePalette.Winter,
+        ThemeChoice.HighContrast => ColorThemePalette.HighContrast,
+        ThemeChoice.Halloween => ColorThemePalette.Halloween,
+        ThemeChoice.MutedHalloween => ColorThemePalette.MutedHalloween,
         _ => ColorThemePalette.Dark,
     };
 

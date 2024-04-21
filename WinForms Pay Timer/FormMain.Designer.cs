@@ -43,7 +43,6 @@ partial class FormMain
         label1 = new Label();
         comboBox1 = new ComboBox();
         linkLabel1 = new LinkLabel();
-        linkLabel2 = new LinkLabel();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -204,24 +203,11 @@ partial class FormMain
         linkLabel1.Text = "Github";
         linkLabel1.LinkClicked += linkLabelGithub_LinkClicked;
         // 
-        // linkLabel2
-        // 
-        linkLabel2.AutoSize = true;
-        linkLabel2.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabel2.Location = new Point(441, 339);
-        linkLabel2.Name = "linkLabel2";
-        linkLabel2.Size = new Size(45, 15);
-        linkLabel2.TabIndex = 18;
-        linkLabel2.TabStop = true;
-        linkLabel2.Text = "Donate";
-        linkLabel2.LinkClicked += linkLabelDonation_LinkClicked;
-        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(496, 358);
-        Controls.Add(linkLabel2);
         Controls.Add(linkLabel1);
         Controls.Add(comboBox1);
         Controls.Add(label1);
@@ -259,5 +245,4 @@ partial class FormMain
     Label label1;
     ComboBox comboBox1;
     LinkLabel linkLabel1;
-    LinkLabel linkLabel2;
 }

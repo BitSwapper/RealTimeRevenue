@@ -31,7 +31,7 @@ public partial class FormMain : Form
 
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
-        comboBox1.DataSource = Enum.GetValues(typeof(ThemeMode));
+        comboBox1.DataSource = Enum.GetValues(typeof(ThemeChoice));
         comboBox1.SelectedIndex = Properties.Settings.Default.ColorThemeOption;
         initd = true;
     }
@@ -97,8 +97,6 @@ public partial class FormMain : Form
     }
 
     void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://github.com/BitSwapper");
-
-    void linkLabelDonation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://buymeacoffee.com/bitswapper");
 
     static void OpenLink(string link)
     {
