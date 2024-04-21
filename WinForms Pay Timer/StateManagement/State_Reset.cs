@@ -11,7 +11,7 @@ public class State_Reset : BaseState<StateManager>
         stateManager.Form.LabelGrandTotal.Text = totalEarnedOnCompletedJobs.ToString("F2");
 
         stateManager.Form.TimeKeeper.TimeCardsThisJob.Clear();
-        stateManager.Form.ListViewTimeCards.Clear();
+        stateManager.Form.ListViewCurrentJobTimeCards.Clear();
 
         stateManager.Form.TimeKeeper.CurrentJobTimeCard = new();
         stateManager.Form.TimeKeeper.TimerStartTime = DateTime.Now;

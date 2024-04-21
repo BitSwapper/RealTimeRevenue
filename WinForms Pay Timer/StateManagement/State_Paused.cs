@@ -14,6 +14,7 @@ public class State_Paused : BaseState<StateManager>
         stateManager.Form.TimeKeeper.TimeCardsThisJob.Add(newTimeCard);
         stateManager.Form.RefreshListView();
     }
+
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }

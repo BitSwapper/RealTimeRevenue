@@ -19,7 +19,7 @@ public partial class FormMain : Form
     public Label LabelTimerDisplay => labelTimerDisplay;
     public Label LabelGrandTotal => labelGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
-    public ListView ListViewTimeCards => listViewTimeCards;
+    public ListView ListViewCurrentJobTimeCards => listViewTimeCards;
 
     public FormMain() => InitializeComponent();
 
@@ -62,11 +62,11 @@ public partial class FormMain : Form
             var listViewItem = new ListViewItem(new[]
             {
                 timeCard.ProjectName,
+                timeCard.MoneyEarned.ToString("F2"),
                 timeCard.HourlyRate.ToString("F2"),
                 TimeUtil.FormatTime(timeCard.TimeSpentWorking),
-                timeCard.MoneyEarned.ToString("F2"),
-                timeCard.StartTime.ToString("MM-dd   HH:mm:ss"),
-                timeCard.StopTime.ToString("MM-dd   HH:mm:ss")
+                timeCard.StartTime.ToString("HH:mm:ss"),
+                timeCard.StopTime.ToString("HH:mm:ss")
             });
 
             listViewTimeCards.Items.Add(listViewItem);

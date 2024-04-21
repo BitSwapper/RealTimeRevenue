@@ -37,7 +37,7 @@ public class State_Completed : BaseState<StateManager>
         combinedTimeCard.MoneyEarned.ToString("F2")});
 
         stateManager.Form.ListViewCompletedJobs.Items.Add(listViewItem);
-        stateManager.Form.ListViewTimeCards.Items.Clear();
+        stateManager.Form.ListViewCurrentJobTimeCards.Items.Clear();
 
         stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Add(combinedTimeCard);
         stateManager.Form.TimeKeeper.TimeCardsThisJob.Clear();
