@@ -1,15 +1,8 @@
+using WinForms_Pay_Timer.StateManagement;
+using WinForms_Pay_Timer.TimeManagement;
 using Timer = System.Windows.Forms.Timer;
 
 namespace WinForms_Pay_Timer;
-
-public class TimeKeeper
-{
-    public DateTime TimerStartTime { get; set; }
-    public TimeSpan ElapsedTime => DateTime.Now - TimerStartTime;
-    public TimeCard CurrentJobTimeCard { get; set; }
-    public List<TimeCard> TimeCardsThisJob { get; set; } = new();
-    public List<TimeCard> TimeCardsCompletedJobs { get; set; } = new();
-}
 
 public partial class FormMain : Form
 {

@@ -1,12 +1,12 @@
-﻿namespace WinForms_Pay_Timer;
+﻿namespace WinForms_Pay_Timer.StateManagement;
 
 public class State_InitNewJob : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager)
     {
-        using(var jobStartedForm = new JobStarter())
+        using (var jobStartedForm = new JobStarter())
         {
-            if(jobStartedForm.ShowDialog() == DialogResult.OK)
+            if (jobStartedForm.ShowDialog() == DialogResult.OK)
             {
                 decimal hourlyRate = jobStartedForm.HourlyRate;
                 string projectName = jobStartedForm.ProjectName;
@@ -20,6 +20,7 @@ public class State_InitNewJob : BaseState<StateManager>
             }
         }
     }
+
     public override void ExitState(StateManager stateManager) { }
     public override void UpdateState(StateManager stateManager) { }
 }

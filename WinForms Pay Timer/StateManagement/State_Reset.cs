@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer;
+﻿namespace WinForms_Pay_Timer.StateManagement;
 
 public class State_Reset : BaseState<StateManager>
 {
@@ -7,7 +7,7 @@ public class State_Reset : BaseState<StateManager>
         stateManager.Form.LabelTimerDisplay.Text = FormMainConstants.DefaultValueForTimerDisplay;
         stateManager.Form.LabelMoneyEarned.Text = FormMainConstants.DefaultValueForMoneyDisplay;
 
-        var totalEarnedOnCompletedJobs = (stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned));
+        var totalEarnedOnCompletedJobs = stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned);
         stateManager.Form.LabelGrandTotal.Text = totalEarnedOnCompletedJobs.ToString("F2");
 
         stateManager.Form.TimeKeeper.TimeCardsThisJob.Clear();

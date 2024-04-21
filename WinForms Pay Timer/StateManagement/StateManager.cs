@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer;
+﻿namespace WinForms_Pay_Timer.StateManagement;
 
 public class StateManager
 {
@@ -7,7 +7,7 @@ public class StateManager
 
     public FormMain Form { get; }
 
-    public StateManager(FormMain form) => this.Form = form;
+    public StateManager(FormMain form) => Form = form;
 
     Dictionary<States, BaseState<StateManager>> concreteStates = new()
     {

@@ -1,4 +1,4 @@
-﻿namespace WinForms_Pay_Timer;
+﻿namespace WinForms_Pay_Timer.TimeManagement;
 
 public static class TimeUtil
 {

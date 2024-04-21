@@ -70,7 +70,7 @@ partial class JobStarter
         // 
         // buttonFinish
         // 
-        buttonFinish.Location = new Point(107, 77);
+        buttonFinish.Location = new Point(107, 72);
         buttonFinish.Name = "buttonFinish";
         buttonFinish.Size = new Size(75, 23);
         buttonFinish.TabIndex = 8;
@@ -82,7 +82,7 @@ partial class JobStarter
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(311, 112);
+        ClientSize = new Size(285, 100);
         Controls.Add(buttonFinish);
         Controls.Add(labelCurrentProj);
         Controls.Add(textBoxProjectName);

@@ -1,4 +1,6 @@
-﻿namespace WinForms_Pay_Timer;
+﻿using WinForms_Pay_Timer.TimeManagement;
+
+namespace WinForms_Pay_Timer.StateManagement;
 
 public class State_Paused : BaseState<StateManager>
 {
