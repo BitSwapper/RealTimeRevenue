@@ -6,7 +6,7 @@ public partial class FormMain : Form
 {
     StateManager stateManager;
     public DateTime TimerStartTime { get; set; }
-    TimeSpan elapsedTime => DateTime.Now - TimerStartTime;
+    public TimeSpan ElapsedTime => DateTime.Now - TimerStartTime;
 
     public TimeCard CurrentJobTimeCard { get; set; }
     public List<TimeCard> TimeCardsThisJob { get; set; } = new();
@@ -48,20 +48,14 @@ public partial class FormMain : Form
 
     void timerUpdateTimerText_Tick(object sender, EventArgs e)
     {
-        var totalEarnedThisJob = (TimeCardsThisJob.Sum((t) => t.MoneyEarned) + CurrentJobTimeCard.HourlyRate * (decimal)elapsedTime.TotalHours);
-        var totalEarnedOnCompletedJobs = (TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned));
-        var GrandTotal = totalEarnedThisJob + totalEarnedOnCompletedJobs;
-
-        labelTimerDisplay.Text = TimeUtil.FormatTime(elapsedTime);
-        labelMoneyEarned.Text = "$" + totalEarnedThisJob.ToString("F2");
-        labelGrandTotal.Text = "$" + GrandTotal.ToString("F2");
+        stateManager.UpdateState();
     }
 
     public TimeCard CreateTimecardForCurJob() => new TimeCard
     {
         ProjectName = CurrentJobTimeCard.ProjectName,
         HourlyRate = CurrentJobTimeCard.HourlyRate,
-        TimeSpentWorking = elapsedTime,
+        TimeSpentWorking = ElapsedTime,
         StartTime = TimerStartTime,
         StopTime = DateTime.Now
     };
