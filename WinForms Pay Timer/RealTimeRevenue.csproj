@@ -7,7 +7,20 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageIcon>Gear.ico</PackageIcon>
+    <ApplicationIcon>Gear.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Gear.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Hex\Pictures\photoshop\ico\Gear.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">

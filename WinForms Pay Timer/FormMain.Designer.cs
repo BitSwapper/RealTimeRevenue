@@ -182,14 +182,14 @@ partial class FormMain
         label1.TabIndex = 14;
         label1.Text = "Grand Total";
         // 
-        // comboBox1
+        // themeComboBox
         // 
         themeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         themeComboBox.FormattingEnabled = true;
         themeComboBox.ItemHeight = 15;
         themeComboBox.Items.AddRange(new object[] { "Light", "Dark" });
         themeComboBox.Location = new Point(376, 7);
-        themeComboBox.Name = "comboBox1";
+        themeComboBox.Name = "themeComboBox";
         themeComboBox.Size = new Size(103, 23);
         themeComboBox.TabIndex = 15;
         themeComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
@@ -251,7 +251,7 @@ partial class FormMain
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         Name = "FormMain";
-        Text = "RealTime Revenue 1.01";
+        Text = "RealTime Revenue 1.02";
         Load += FormMain_Load;
         ResumeLayout(false);
         PerformLayout();

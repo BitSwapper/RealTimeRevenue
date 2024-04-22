@@ -28,6 +28,7 @@ partial class JobStarter
     /// </summary>
     void InitializeComponent()
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JobStarter));
         labelCurrentProj = new Label();
         textBoxProjectName = new TextBox();
         labelHourlyRate = new Label();
@@ -88,6 +89,7 @@ partial class JobStarter
         Controls.Add(textBoxProjectName);
         Controls.Add(labelHourlyRate);
         Controls.Add(textBoxHourlyRate);
+        Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "JobStarter";
         Text = "Job Starter";
         Load += JobStarter_Load;
