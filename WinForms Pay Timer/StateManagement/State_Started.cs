@@ -1,4 +1,5 @@
 ﻿using RealTime_Revenue.TimeManagement;
+using RealTime_Revenue.Utility;
 
 namespace RealTime_Revenue.StateManagement;
 
@@ -26,7 +27,7 @@ public class State_Started : BaseState<StateManager>
             {
                 stateManager.Form.TimeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
                 stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
-                stateManager.Form.RefreshListView(true);
+                ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, stateManager.Form.TimeKeeper);
             }
         }
     }
@@ -44,6 +45,6 @@ public class State_Started : BaseState<StateManager>
         stateManager.Form.LabelGrandTotal.Text = "$" + GrandTotal.ToString("F2");
 
         stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
-        stateManager.Form.RefreshListView(true);
+        ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, stateManager.Form.TimeKeeper);
     }
 }

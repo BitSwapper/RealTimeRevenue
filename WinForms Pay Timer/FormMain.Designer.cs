@@ -42,7 +42,7 @@ partial class FormMain
         listViewCompletedJobs = new ListView();
         labelMoneyGrandTotal = new Label();
         label1 = new Label();
-        comboBox1 = new ComboBox();
+        themeComboBox = new ComboBox();
         linkLabel1 = new LinkLabel();
         linkLabelDonate = new LinkLabel();
         label2 = new Label();
@@ -184,15 +184,15 @@ partial class FormMain
         // 
         // comboBox1
         // 
-        comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-        comboBox1.FormattingEnabled = true;
-        comboBox1.ItemHeight = 15;
-        comboBox1.Items.AddRange(new object[] { "Light", "Dark" });
-        comboBox1.Location = new Point(376, 7);
-        comboBox1.Name = "comboBox1";
-        comboBox1.Size = new Size(103, 23);
-        comboBox1.TabIndex = 15;
-        comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+        themeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        themeComboBox.FormattingEnabled = true;
+        themeComboBox.ItemHeight = 15;
+        themeComboBox.Items.AddRange(new object[] { "Light", "Dark" });
+        themeComboBox.Location = new Point(376, 7);
+        themeComboBox.Name = "comboBox1";
+        themeComboBox.Size = new Size(103, 23);
+        themeComboBox.TabIndex = 15;
+        themeComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         // 
         // linkLabel1
         // 
@@ -235,7 +235,7 @@ partial class FormMain
         Controls.Add(label2);
         Controls.Add(linkLabelDonate);
         Controls.Add(linkLabel1);
-        Controls.Add(comboBox1);
+        Controls.Add(themeComboBox);
         Controls.Add(label1);
         Controls.Add(labelMoneyGrandTotal);
         Controls.Add(listViewCompletedJobs);
@@ -270,7 +270,7 @@ partial class FormMain
     ListView listViewCompletedJobs;
     Label labelMoneyGrandTotal;
     Label label1;
-    ComboBox comboBox1;
+    ComboBox themeComboBox;
     LinkLabel linkLabel1;
     private LinkLabel linkLabelDonate;
     private Label label2;

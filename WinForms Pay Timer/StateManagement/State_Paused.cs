@@ -1,4 +1,5 @@
 ﻿using RealTime_Revenue.TimeManagement;
+using RealTime_Revenue.Utility;
 
 namespace RealTime_Revenue.StateManagement;
 
@@ -8,7 +9,7 @@ public class State_Paused : BaseState<StateManager>
     {
         ToggleButtonStates(stateManager);
         AddNewTimecardForCurJob(stateManager);
-        stateManager.Form.RefreshListView(false);
+        ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, false, stateManager.Form.TimeKeeper);
 
         static void ToggleButtonStates(StateManager stateManager)
         {
@@ -18,7 +19,7 @@ public class State_Paused : BaseState<StateManager>
 
         static void AddNewTimecardForCurJob(StateManager stateManager)
         {
-            TimeCard newTimeCard = stateManager.Form.CreateTimecardForCurJob();
+            TimeCard newTimeCard = TimeCardCreator.CreateTimecardForCurJob(stateManager.Form.TimeKeeper);
             stateManager.Form.TimeKeeper.TimeCardsThisJob.Add(newTimeCard);
         }
     }

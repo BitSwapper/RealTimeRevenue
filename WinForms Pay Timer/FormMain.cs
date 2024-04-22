@@ -1,6 +1,7 @@
 using RealTime_Revenue.ColorManagement;
 using RealTime_Revenue.StateManagement;
 using RealTime_Revenue.TimeManagement;
+using RealTime_Revenue.Utility;
 using static RealTime_Revenue.ColorManagement.ColorThemeManager;
 using Timer = System.Windows.Forms.Timer;
 
@@ -8,7 +9,6 @@ namespace RealTime_Revenue;
 
 public partial class FormMain : Form
 {
-    StateManager stateManager;
     public TimeKeeper TimeKeeper { get; } = new();
     public Timer TimerUpdateTimerText => timerUpdateTimerText;
     public Button ButtonTimerStart => buttonTimerStart;
@@ -21,6 +21,10 @@ public partial class FormMain : Form
     public Label LabelGrandTotal => labelMoneyGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewCurrentJobTimeCards => listViewTimeCards;
+    public ComboBox ThemeComboBox => themeComboBox; 
+
+    StateManager stateManager;
+    LinkOpener linkOpener = new();
     bool initd = false;
 
     public FormMain() => InitializeComponent();
@@ -30,8 +34,6 @@ public partial class FormMain : Form
         ColorThemeManager.InitColors(this);
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
-        comboBox1.DataSource = Enum.GetValues(typeof(ThemeChoice));
-        comboBox1.SelectedIndex = Properties.Settings.Default.ColorThemeOption;
         initd = true;
     }
 
@@ -49,66 +51,16 @@ public partial class FormMain : Form
     {
         if(MessageBox.Show(FormMainConstants.MsgResetTimerWarning, "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
             stateManager.SwapState(StateManager.States.Reset);
-    }
-
-    public TimeCard CreateTimecardForCurJob() => new TimeCard
-    {
-        JobName = TimeKeeper.CurrentJobTimeCard.JobName,
-        HourlyRate = TimeKeeper.CurrentJobTimeCard.HourlyRate,
-        TimeSpentWorking = TimeKeeper.ElapsedTime,
-        StartTime = TimeKeeper.TimerStartTime,
-        StopTime = DateTime.Now
-    };
-
-    public void RefreshListView(bool includeCurTimeCard)
-    {
-        listViewTimeCards.Items.Clear();
-
-        if(includeCurTimeCard)
-        {
-            ListViewItem curCard = MakeNew(TimeKeeper.CurrentJobTimeCard);
-            listViewTimeCards.Items.Add(curCard);
-        }
-
-        foreach(var timeCard in TimeKeeper.TimeCardsThisJob.OrderByDescending(tc => tc.StopTime))
-        {
-            ListViewItem listViewItem = MakeNew(timeCard);
-            listViewTimeCards.Items.Add(listViewItem);
-        }
-    }
-
-    static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
-                {
-                timeCard.JobName,
-                timeCard.MoneyEarned.ToString("F2"),
-                timeCard.HourlyRate.ToString("F2"),
-                TimeUtil.FormatTime(timeCard.TimeSpentWorking),
-                timeCard.StartTime.ToString("HH:mm:ss"),
-                timeCard.StopTime.ToString("HH:mm:ss")
-            });
-
+    }  
     void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
         if(!initd) return;
-        Properties.Settings.Default.ColorThemeOption = comboBox1.SelectedIndex;
+        Properties.Settings.Default.ColorThemeOption = themeComboBox.SelectedIndex;
         Properties.Settings.Default.Save();
         ColorThemeManager.InitColors(this);
     }
 
-    void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://github.com/BitSwapper");
+    void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => linkOpener.OpenLink("https://github.com/BitSwapper");
 
-    void linkLabelDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => OpenLink("https://buymeacoffee.com/bitswapper");
-
-    static void OpenLink(string link)
-    {
-        using(var process = new System.Diagnostics.Process())
-        {
-            process.StartInfo = new System.Diagnostics.ProcessStartInfo
-            {
-                UseShellExecute = true,
-                FileName = link
-            };
-            process.Start();
-        }
-    }
+    void linkLabelDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => linkOpener.OpenLink("https://buymeacoffee.com/bitswapper");
 }
