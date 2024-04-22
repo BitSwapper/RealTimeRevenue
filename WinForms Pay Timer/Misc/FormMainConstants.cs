@@ -1,4 +1,4 @@
-﻿namespace RealTime_Revenue;
+﻿namespace RealTime_Revenue.Misc;
 
 public static class FormMainConstants
 {

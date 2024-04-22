@@ -1,6 +1,6 @@
 ﻿using RealTime_Revenue.TimeManagement;
 
-namespace RealTime_Revenue.Utility;
+namespace RealTime_Revenue.Misc;
 
 public static class ListViewRefresher
 {

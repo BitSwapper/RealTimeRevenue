@@ -1,4 +1,6 @@
-﻿namespace RealTime_Revenue.StateManagement;
+﻿using RealTime_Revenue.Misc;
+
+namespace RealTime_Revenue.StateManagement;
 
 public class State_Reset : BaseState<StateManager>
 {

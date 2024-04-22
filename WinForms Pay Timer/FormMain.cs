@@ -1,7 +1,7 @@
 using RealTime_Revenue.ColorManagement;
 using RealTime_Revenue.StateManagement;
 using RealTime_Revenue.TimeManagement;
-using RealTime_Revenue.Utility;
+using RealTime_Revenue.Misc;
 using Timer = System.Windows.Forms.Timer;
 
 namespace RealTime_Revenue;

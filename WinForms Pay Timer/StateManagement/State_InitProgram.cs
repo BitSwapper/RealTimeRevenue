@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using RealTime_Revenue.ColorManagement;
+using RealTime_Revenue.Misc;
 using static RealTime_Revenue.ColorManagement.ColorThemeManager;
 
 namespace RealTime_Revenue.StateManagement;

@@ -1,4 +1,4 @@
-﻿namespace RealTime_Revenue.Utility;
+﻿namespace RealTime_Revenue.Misc;
 
 public class LinkOpener
 {
