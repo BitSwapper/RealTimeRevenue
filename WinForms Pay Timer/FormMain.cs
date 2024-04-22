@@ -2,7 +2,6 @@ using RealTime_Revenue.ColorManagement;
 using RealTime_Revenue.StateManagement;
 using RealTime_Revenue.TimeManagement;
 using RealTime_Revenue.Utility;
-using static RealTime_Revenue.ColorManagement.ColorThemeManager;
 using Timer = System.Windows.Forms.Timer;
 
 namespace RealTime_Revenue;
@@ -21,7 +20,7 @@ public partial class FormMain : Form
     public Label LabelGrandTotal => labelMoneyGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewCurrentJobTimeCards => listViewTimeCards;
-    public ComboBox ThemeComboBox => themeComboBox; 
+    public ComboBox ThemeComboBox => themeComboBox;
 
     StateManager stateManager;
     LinkOpener linkOpener = new();
@@ -47,11 +46,16 @@ public partial class FormMain : Form
 
     void buttonTimerComplete_Click(object sender, EventArgs e) => stateManager.SwapState(StateManager.States.Completed);
 
+    void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => linkOpener.OpenLink("https://github.com/BitSwapper");
+
+    void linkLabelDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => linkOpener.OpenLink("https://buymeacoffee.com/bitswapper");
+
     void buttonTimerReset_Click(object sender, EventArgs e)
     {
         if(MessageBox.Show(FormMainConstants.MsgResetTimerWarning, "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
             stateManager.SwapState(StateManager.States.Reset);
-    }  
+    }
+
     void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
         if(!initd) return;
@@ -59,8 +63,4 @@ public partial class FormMain : Form
         Properties.Settings.Default.Save();
         ColorThemeManager.InitColors(this);
     }
-
-    void linkLabelGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => linkOpener.OpenLink("https://github.com/BitSwapper");
-
-    void linkLabelDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => linkOpener.OpenLink("https://buymeacoffee.com/bitswapper");
 }
