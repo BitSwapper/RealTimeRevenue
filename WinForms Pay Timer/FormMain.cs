@@ -30,7 +30,7 @@ public partial class FormMain : Form
 
     void FormMain_Load(object sender, EventArgs e)
     {
-        ColorThemeManager.InitColors(this);
+        ColorThemeManager.UpdateColorScheme(this);
         stateManager = new(this);
         stateManager.SwapState(StateManager.States.InitialzingProgram);
         initd = true;
@@ -61,6 +61,6 @@ public partial class FormMain : Form
         if(!initd) return;
         Properties.Settings.Default.ColorThemeOption = themeComboBox.SelectedIndex;
         Properties.Settings.Default.Save();
-        ColorThemeManager.InitColors(this);
+        ColorThemeManager.UpdateColorScheme(this);
     }
 }

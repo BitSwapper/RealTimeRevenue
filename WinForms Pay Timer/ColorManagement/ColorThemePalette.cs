@@ -67,7 +67,7 @@ public static class ColorThemePalette
         MoneyFontColor = Color.Silver
     };
 
-    public static ColorTheme RoseGarden { get; } = new()
+    public static ColorTheme Rose { get; } = new()
     {
         UseDarkMode = false,
         ColorBg = Color.FromArgb(255, 240, 128, 128),

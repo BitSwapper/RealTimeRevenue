@@ -8,7 +8,7 @@ public static partial class ColorThemeManager
         Light,
         Ocean,
         Sunset,
-        RoseGarden,
+        Rose,
         Winter,
         HighContrast,
         Halloween,
