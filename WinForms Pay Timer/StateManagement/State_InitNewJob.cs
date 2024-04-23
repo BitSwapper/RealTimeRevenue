@@ -10,6 +10,7 @@ public class State_InitNewJob : BaseState<StateManager>
             {
                 SetupCurrentJobTimeCard(stateManager, jobStartedForm.HourlyRate, jobStartedForm.ProjectName);
                 ToggleButtonStates(stateManager);
+                stateManager.Form.LabelCurJobName.Text = $"This Job ({stateManager.Form.TimeKeeper.CurrentJobTimeCard.JobName})";
             }
         }
 

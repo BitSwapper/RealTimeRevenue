@@ -11,6 +11,11 @@ public partial class JobStarter : Form
 
     void buttonFinish_Click(object sender, EventArgs e)
     {
+        Finish();
+    }
+
+    void Finish()
+    {
         if(decimal.TryParse(textBoxHourlyRate.Text, out var newHourly))
             HourlyRate = newHourly;
 
@@ -21,4 +26,30 @@ public partial class JobStarter : Form
     }
 
     void JobStarter_Load(object sender, EventArgs e) => ColorThemeManager.UpdateColorScheme(this);
+
+    void textBoxHourlyRate_KeyDown(object sender, KeyEventArgs e)
+    {
+        ListenForKeys(e);
+
+    }
+
+    void textBoxProjectName_KeyDown(object sender, KeyEventArgs e)
+    {
+        ListenForKeys(e);
+    }
+
+    void ListenForKeys(KeyEventArgs e)
+    {
+        if(e.KeyCode == Keys.Enter)
+        {
+            e.Handled = true;
+            Finish();
+        }
+        else if(e.KeyCode == Keys.Escape)
+        {
+            e.Handled = true;
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+    }
 }

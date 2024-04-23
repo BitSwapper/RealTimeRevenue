@@ -7,6 +7,8 @@ public class State_Completed : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager)
     {
+        stateManager.Form.LabelCurJobName.Text = $"This Job (none)";
+
         stateManager.Form.ButtonTimerPause.PerformClick();
         ToggleButtonStates(stateManager);
         ResetCashLabels(stateManager);

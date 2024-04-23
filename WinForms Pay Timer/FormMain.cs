@@ -16,8 +16,10 @@ public partial class FormMain : Form
     public Button ButtonStartNewJob => buttonStartNewJob;
     public Button ButtonTimerComplete => buttonTimerComplete;
     public Button ButtonTimerReset => buttonTimerReset;
+    public Label LabelCurJobName => labelCurJobName;
     public Label LabelMoneyEarned => labelMoneyEarned;
-    public Label LabelTimerDisplay => labelTimerDisplay;
+    public Label LabelTimerDisplay => labelTimerDisplayCurJob;
+    public Label LabelTimerDisplayGrandTotal => labelTimerDisplayGrandTotal;
     public Label LabelGrandTotal => labelMoneyGrandTotal;
     public ListView ListViewCompletedJobs => listViewCompletedJobs;
     public ListView ListViewCurrentJobTimeCards => listViewTimeCards;
@@ -53,7 +55,7 @@ public partial class FormMain : Form
 
     void buttonTimerReset_Click(object sender, EventArgs e)
     {
-        if(MessageBox.Show(FormMainConstants.MsgResetTimerWarning, "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
+        if(MessageBox.Show(FormMainConstants.MsgResetTimerWarning, "Warning!", MessageBoxButtons.OKCancel) == DialogResult.OK)
             stateManager.SwapState(StateManager.States.Reset);
     }
 

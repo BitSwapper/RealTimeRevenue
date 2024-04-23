@@ -21,7 +21,7 @@ public static class ListViewRefresher
         }
     }
 
-    private static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
+    static ListViewItem MakeNew(TimeCard? timeCard) => new ListViewItem(new[]
     {
             timeCard.JobName,
             timeCard.MoneyEarned.ToString("F2"),

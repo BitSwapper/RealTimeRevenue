@@ -33,11 +33,11 @@ public class State_InitProgram : BaseState<StateManager>
             stateManager.Form.ListViewCompletedJobs.View = View.Details;
             stateManager.Form.ListViewCompletedJobs.GridLines = true;
             stateManager.Form.ListViewCompletedJobs.FullRowSelect = true;
-            stateManager.Form.ListViewCompletedJobs.Columns.Add("Job Name", FormMainConstants.ProjectNameColumnWidth);
-            stateManager.Form.ListViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
-            stateManager.Form.ListViewCompletedJobs.Columns.Add("Rate", FormMainConstants.HourlyRateColumnWidth);
-            stateManager.Form.ListViewCompletedJobs.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
-            stateManager.Form.ListViewCompletedJobs.Columns.Add("", FormMainConstants.EmpytySpaceBottom);
+            stateManager.Form.ListViewCompletedJobs.Columns.Add("Job Name", FormMainConstants.LviColWidthProjectName);
+            stateManager.Form.ListViewCompletedJobs.Columns.Add("Money Earned", FormMainConstants.LviColWidthMoneyEarned);
+            stateManager.Form.ListViewCompletedJobs.Columns.Add("Rate", FormMainConstants.LviColWidthHourlyRate);
+            stateManager.Form.ListViewCompletedJobs.Columns.Add("Time Spent", FormMainConstants.LviColWidthTimeSpent);
+            stateManager.Form.ListViewCompletedJobs.Columns.Add("", FormMainConstants.LviColWidthEmptySpaceCompletedJobs);
         }
 
         static void InitLviCurrentJobs(StateManager stateManager)
@@ -45,13 +45,13 @@ public class State_InitProgram : BaseState<StateManager>
             stateManager.Form.ListViewCurrentJobTimeCards.View = View.Details;
             stateManager.Form.ListViewCurrentJobTimeCards.GridLines = true;
             stateManager.Form.ListViewCurrentJobTimeCards.FullRowSelect = true;
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Job Name", FormMainConstants.ProjectNameColumnWidth);
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Money Earned", FormMainConstants.MoneyEarnedColumnWidth);
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Rate", FormMainConstants.HourlyRateColumnWidth);
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Time Spent", FormMainConstants.TimeSpentColumnWidth);
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Start Time", FormMainConstants.TimeSpentStartStopColumnWidth);
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Stop Time", FormMainConstants.TimeSpentStartStopColumnWidth);
-            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("", FormMainConstants.EmpytySpaceTop);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Job Name", FormMainConstants.LviColWidthProjectName);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Money Earned", FormMainConstants.LviColWidthMoneyEarned);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Rate", FormMainConstants.LviColWidthHourlyRate);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Time Spent", FormMainConstants.LviColWidthTimeSpent);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Start Time", FormMainConstants.LviColWidthTimeSpentStartStop);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("Stop Time", FormMainConstants.LviColWidthTimeSpentStartStop);
+            stateManager.Form.ListViewCurrentJobTimeCards.Columns.Add("", FormMainConstants.LviColWidthEmpytySpaceCurJob);
         }
 
         void SetupCustomListViewAppearance(StateManager stateManager)

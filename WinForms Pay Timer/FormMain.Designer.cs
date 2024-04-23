@@ -33,7 +33,7 @@ partial class FormMain
         buttonTimerStart = new Button();
         buttonTimerPause = new Button();
         buttonTimerReset = new Button();
-        labelTimerDisplay = new Label();
+        labelTimerDisplayCurJob = new Label();
         listViewTimeCards = new ListView();
         buttonTimerComplete = new Button();
         timerUpdateTimerText = new System.Windows.Forms.Timer(components);
@@ -45,8 +45,8 @@ partial class FormMain
         themeComboBox = new ComboBox();
         linkLabel1 = new LinkLabel();
         linkLabelDonate = new LinkLabel();
-        label2 = new Label();
-        label3 = new Label();
+        labelCurJobName = new Label();
+        labelTimerDisplayGrandTotal = new Label();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -91,16 +91,16 @@ partial class FormMain
         buttonTimerReset.UseVisualStyleBackColor = true;
         buttonTimerReset.Click += buttonTimerReset_Click;
         // 
-        // labelTimerDisplay
+        // labelTimerDisplayCurJob
         // 
-        labelTimerDisplay.AutoSize = true;
-        labelTimerDisplay.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        labelTimerDisplay.Location = new Point(13, 21);
-        labelTimerDisplay.Name = "labelTimerDisplay";
-        labelTimerDisplay.Size = new Size(104, 31);
-        labelTimerDisplay.TabIndex = 7;
-        labelTimerDisplay.Text = "00:00:00";
-        labelTimerDisplay.TextAlign = ContentAlignment.MiddleLeft;
+        labelTimerDisplayCurJob.AutoSize = true;
+        labelTimerDisplayCurJob.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        labelTimerDisplayCurJob.Location = new Point(11, 21);
+        labelTimerDisplayCurJob.Name = "labelTimerDisplayCurJob";
+        labelTimerDisplayCurJob.Size = new Size(104, 31);
+        labelTimerDisplayCurJob.TabIndex = 7;
+        labelTimerDisplayCurJob.Text = "00:00:00";
+        labelTimerDisplayCurJob.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // listViewTimeCards
         // 
@@ -168,7 +168,7 @@ partial class FormMain
         labelMoneyGrandTotal.AutoSize = true;
         labelMoneyGrandTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
         labelMoneyGrandTotal.ForeColor = Color.Green;
-        labelMoneyGrandTotal.Location = new Point(13, 353);
+        labelMoneyGrandTotal.Location = new Point(13, 386);
         labelMoneyGrandTotal.Name = "labelMoneyGrandTotal";
         labelMoneyGrandTotal.RightToLeft = RightToLeft.No;
         labelMoneyGrandTotal.Size = new Size(67, 30);
@@ -202,7 +202,7 @@ partial class FormMain
         // 
         linkLabel1.AutoSize = true;
         linkLabel1.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabel1.Location = new Point(12, 527);
+        linkLabel1.Location = new Point(12, 419);
         linkLabel1.Name = "linkLabel1";
         linkLabel1.Size = new Size(43, 15);
         linkLabel1.TabIndex = 17;
@@ -214,7 +214,7 @@ partial class FormMain
         // 
         linkLabelDonate.AutoSize = true;
         linkLabelDonate.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabelDonate.Location = new Point(444, 527);
+        linkLabelDonate.Location = new Point(444, 419);
         linkLabelDonate.Name = "linkLabelDonate";
         linkLabelDonate.Size = new Size(45, 15);
         linkLabelDonate.TabIndex = 18;
@@ -222,33 +222,33 @@ partial class FormMain
         linkLabelDonate.Text = "Donate";
         linkLabelDonate.LinkClicked += linkLabelDonate_LinkClicked;
         // 
-        // label2
+        // labelCurJobName
         // 
-        label2.AutoSize = true;
-        label2.Location = new Point(13, 6);
-        label2.Name = "label2";
-        label2.Size = new Size(49, 15);
-        label2.TabIndex = 19;
-        label2.Text = "This Job";
+        labelCurJobName.AutoSize = true;
+        labelCurJobName.Location = new Point(13, 6);
+        labelCurJobName.Name = "labelCurJobName";
+        labelCurJobName.Size = new Size(87, 15);
+        labelCurJobName.TabIndex = 19;
+        labelCurJobName.Text = "This Job (none)";
         // 
-        // label3
+        // labelTimerDisplayGrandTotal
         // 
-        label3.AutoSize = true;
-        label3.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        label3.Location = new Point(13, 383);
-        label3.Name = "label3";
-        label3.Size = new Size(104, 31);
-        label3.TabIndex = 20;
-        label3.Text = "00:00:00";
-        label3.TextAlign = ContentAlignment.MiddleLeft;
+        labelTimerDisplayGrandTotal.AutoSize = true;
+        labelTimerDisplayGrandTotal.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        labelTimerDisplayGrandTotal.Location = new Point(11, 355);
+        labelTimerDisplayGrandTotal.Name = "labelTimerDisplayGrandTotal";
+        labelTimerDisplayGrandTotal.Size = new Size(104, 31);
+        labelTimerDisplayGrandTotal.TabIndex = 20;
+        labelTimerDisplayGrandTotal.Text = "00:00:00";
+        labelTimerDisplayGrandTotal.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(496, 551);
-        Controls.Add(label3);
-        Controls.Add(label2);
+        ClientSize = new Size(496, 437);
+        Controls.Add(labelTimerDisplayGrandTotal);
+        Controls.Add(labelCurJobName);
         Controls.Add(linkLabelDonate);
         Controls.Add(linkLabel1);
         Controls.Add(themeComboBox);
@@ -259,7 +259,7 @@ partial class FormMain
         Controls.Add(buttonStartNewJob);
         Controls.Add(buttonTimerComplete);
         Controls.Add(listViewTimeCards);
-        Controls.Add(labelTimerDisplay);
+        Controls.Add(labelTimerDisplayCurJob);
         Controls.Add(buttonTimerReset);
         Controls.Add(buttonTimerPause);
         Controls.Add(buttonTimerStart);
@@ -267,7 +267,7 @@ partial class FormMain
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         Name = "FormMain";
-        Text = "RealTime Revenue 1.02";
+        Text = "RealTime Revenue 1.1.0";
         Load += FormMain_Load;
         ResumeLayout(false);
         PerformLayout();
@@ -277,7 +277,7 @@ partial class FormMain
     Button buttonTimerStart;
     Button buttonTimerPause;
     Button buttonTimerReset;
-    Label labelTimerDisplay;
+    Label labelTimerDisplayCurJob;
     ListView listViewTimeCards;
     Button buttonTimerComplete;
     System.Windows.Forms.Timer timerUpdateTimerText;
@@ -288,7 +288,7 @@ partial class FormMain
     Label label1;
     ComboBox themeComboBox;
     LinkLabel linkLabel1;
-    private LinkLabel linkLabelDonate;
-    private Label label2;
-    private Label label3;
+    LinkLabel linkLabelDonate;
+    Label labelCurJobName;
+    Label labelTimerDisplayGrandTotal;
 }

@@ -33,22 +33,24 @@ public class State_Started : BaseState<StateManager>
         }
     }
 
+    public override void ExitState(StateManager stateManager) => stateManager.Form.ListViewCurrentJobTimeCards.Scrollable = true;
 
-    public override void ExitState(StateManager stateManager) 
-    {
-        stateManager.Form.ListViewCurrentJobTimeCards.Scrollable = true;
-    }
     public override void UpdateState(StateManager stateManager)
     {
         var totalEarnedThisJob = stateManager.Form.TimeKeeper.TimeCardsThisJob.Sum((t) => t.MoneyEarned) + stateManager.Form.TimeKeeper.CurrentJobTimeCard.HourlyRate * (decimal)stateManager.Form.TimeKeeper.ElapsedTime.TotalHours;
         var totalEarnedOnCompletedJobs = stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned);
         var GrandTotal = totalEarnedThisJob + totalEarnedOnCompletedJobs;
-
-        stateManager.Form.LabelTimerDisplay.Text = TimeUtil.FormatTime(stateManager.Form.TimeKeeper.ElapsedTime);
-        stateManager.Form.LabelMoneyEarned.Text = "$" + totalEarnedThisJob.ToString("F2");
-        stateManager.Form.LabelGrandTotal.Text = "$" + GrandTotal.ToString("F2");
-
-        stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
+        TimeSpan timeSpentOnCompletedJobs = stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Aggregate(new TimeSpan(), (total, job) => total + job.TimeSpentWorking);
+        UpdateTextLabels(stateManager, totalEarnedThisJob, GrandTotal, timeSpentOnCompletedJobs);
         ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, stateManager.Form.TimeKeeper);
+
+        static void UpdateTextLabels(StateManager stateManager, decimal totalEarnedThisJob, decimal GrandTotal, TimeSpan timeSpentOnCompletedJobs)
+        {
+            stateManager.Form.LabelTimerDisplay.Text = TimeUtil.FormatTime(stateManager.Form.TimeKeeper.ElapsedTime);
+            stateManager.Form.LabelTimerDisplayGrandTotal.Text = TimeUtil.FormatTime(stateManager.Form.TimeKeeper.ElapsedTime + timeSpentOnCompletedJobs);
+            stateManager.Form.LabelMoneyEarned.Text = "$" + totalEarnedThisJob.ToString("F2");
+            stateManager.Form.LabelGrandTotal.Text = "$" + GrandTotal.ToString("F2");
+            stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
+        }
     }
 }

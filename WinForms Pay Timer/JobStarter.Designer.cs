@@ -41,9 +41,9 @@ partial class JobStarter
         labelCurrentProj.AutoSize = true;
         labelCurrentProj.Location = new Point(12, 40);
         labelCurrentProj.Name = "labelCurrentProj";
-        labelCurrentProj.Size = new Size(79, 15);
+        labelCurrentProj.Size = new Size(60, 15);
         labelCurrentProj.TabIndex = 7;
-        labelCurrentProj.Text = "Project Name";
+        labelCurrentProj.Text = "Job Name";
         // 
         // textBoxProjectName
         // 
@@ -51,6 +51,8 @@ partial class JobStarter
         textBoxProjectName.Name = "textBoxProjectName";
         textBoxProjectName.Size = new Size(173, 23);
         textBoxProjectName.TabIndex = 6;
+        textBoxProjectName.Text = "Job A";
+        textBoxProjectName.KeyDown += textBoxProjectName_KeyDown;
         // 
         // labelHourlyRate
         // 
@@ -68,6 +70,7 @@ partial class JobStarter
         textBoxHourlyRate.Size = new Size(40, 23);
         textBoxHourlyRate.TabIndex = 4;
         textBoxHourlyRate.Text = "40";
+        textBoxHourlyRate.KeyDown += textBoxHourlyRate_KeyDown;
         // 
         // buttonFinish
         // 
@@ -89,7 +92,9 @@ partial class JobStarter
         Controls.Add(textBoxProjectName);
         Controls.Add(labelHourlyRate);
         Controls.Add(textBoxHourlyRate);
+        FormBorderStyle = FormBorderStyle.FixedSingle;
         Icon = (Icon)resources.GetObject("$this.Icon");
+        MaximizeBox = false;
         Name = "JobStarter";
         Text = "Job Starter";
         Load += JobStarter_Load;
