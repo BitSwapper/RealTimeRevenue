@@ -3,6 +3,7 @@ using RealTime_Revenue.Misc;
 using RealTime_Revenue.StateManagement;
 using RealTime_Revenue.TimeManagement;
 using Timer = System.Windows.Forms.Timer;
+using RealTime_Revenue.Properties;
 
 namespace RealTime_Revenue;
 
@@ -59,8 +60,8 @@ public partial class FormMain : Form
     void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
         if(!initd) return;
-        Properties.Settings.Default.ColorThemeOption = themeComboBox.SelectedIndex;
-        Properties.Settings.Default.Save();
+        Settings.Default.ColorThemeOption = themeComboBox.SelectedIndex;
+        Settings.Default.Save();
         ColorThemeManager.UpdateColorScheme(this);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace RealTime_Revenue.ColorManagement;
+﻿using RealTime_Revenue.Properties;
+
+namespace RealTime_Revenue.ColorManagement;
 
 public static partial class ColorThemeManager
 {
@@ -6,28 +8,34 @@ public static partial class ColorThemeManager
 
     public static void UpdateColorScheme(Form form)
     {
-        CurTheme = GetTheme((ThemeChoice)Properties.Settings.Default.ColorThemeOption);
+        CurTheme = GetTheme((ThemeChoice)Settings.Default.ColorThemeOption);
         form.BackColor = CurTheme.ColorBg;
         form.ForeColor = CurTheme.FontColor;
-        ChangeControlsColor(form, CurTheme);
+        ChangeColorThemeOfAllControls(form, CurTheme);
     }
-
     static ColorTheme GetTheme(ThemeChoice mode) => mode switch
     {
-        ThemeChoice.Dark => ColorThemePalette.Dark,
         ThemeChoice.Light => ColorThemePalette.Light,
+        ThemeChoice.Dark => ColorThemePalette.Dark,
+        ThemeChoice.Stealth => ColorThemePalette.Stealth,
+        ThemeChoice.GrayBlob => ColorThemePalette.GrayBlob,
         ThemeChoice.Ocean => ColorThemePalette.Ocean,
         ThemeChoice.Sunset => ColorThemePalette.Sunset,
+        ThemeChoice.Earth => ColorThemePalette.Earth,
         ThemeChoice.Rose => ColorThemePalette.Rose,
         ThemeChoice.Winter => ColorThemePalette.Winter,
-        ThemeChoice.HighContrast => ColorThemePalette.HighContrast,
+        ThemeChoice.Frost => ColorThemePalette.Frost,
         ThemeChoice.Halloween => ColorThemePalette.Halloween,
         ThemeChoice.MutedHalloween => ColorThemePalette.MutedHalloween,
+        ThemeChoice.Neon => ColorThemePalette.Neon,
+        ThemeChoice.Cyber => ColorThemePalette.Cyber,
+        ThemeChoice.HighContrast => ColorThemePalette.HighContrast,
         _ => ColorThemePalette.Dark,
     };
 
 
-    static void ChangeControlsColor(Control control, ColorTheme theme)
+
+    static void ChangeColorThemeOfAllControls(Control control, ColorTheme theme)
     {
         foreach(Control childControl in control.Controls)
         {
@@ -36,8 +44,9 @@ public static partial class ColorThemeManager
             else if(childControl is Label label) ApplyLabelColors(theme, label);
             else if(childControl is ListView LV) ApplyListViewColors(theme, LV);
 
-            if(childControl.Controls.Count > 0) ChangeControlsColor(childControl, theme);
+            if(childControl.Controls.Count > 0) ChangeColorThemeOfAllControls(childControl, theme);
         }
+
 
         static void ApplyButtonColors(ColorTheme theme, Button button)
         {

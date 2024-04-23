@@ -56,7 +56,7 @@ partial class FormMain
         buttonTimerStart.FlatStyle = FlatStyle.Flat;
         buttonTimerStart.Location = new Point(119, 55);
         buttonTimerStart.Name = "buttonTimerStart";
-        buttonTimerStart.Size = new Size(55, 30);
+        buttonTimerStart.Size = new Size(55, 24);
         buttonTimerStart.TabIndex = 4;
         buttonTimerStart.Text = "Start";
         buttonTimerStart.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@ partial class FormMain
         buttonTimerPause.FlatStyle = FlatStyle.Flat;
         buttonTimerPause.Location = new Point(187, 55);
         buttonTimerPause.Name = "buttonTimerPause";
-        buttonTimerPause.Size = new Size(55, 30);
+        buttonTimerPause.Size = new Size(55, 24);
         buttonTimerPause.TabIndex = 5;
         buttonTimerPause.Text = "Pause";
         buttonTimerPause.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@ partial class FormMain
         buttonTimerReset.FlatStyle = FlatStyle.Flat;
         buttonTimerReset.Location = new Point(323, 55);
         buttonTimerReset.Name = "buttonTimerReset";
-        buttonTimerReset.Size = new Size(55, 30);
+        buttonTimerReset.Size = new Size(55, 24);
         buttonTimerReset.TabIndex = 6;
         buttonTimerReset.Text = "Reset";
         buttonTimerReset.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@ partial class FormMain
         buttonTimerComplete.FlatStyle = FlatStyle.Flat;
         buttonTimerComplete.Location = new Point(255, 55);
         buttonTimerComplete.Name = "buttonTimerComplete";
-        buttonTimerComplete.Size = new Size(55, 30);
+        buttonTimerComplete.Size = new Size(55, 24);
         buttonTimerComplete.TabIndex = 9;
         buttonTimerComplete.Text = "Finish";
         buttonTimerComplete.UseVisualStyleBackColor = true;

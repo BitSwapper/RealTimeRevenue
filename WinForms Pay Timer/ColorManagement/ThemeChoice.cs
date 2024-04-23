@@ -4,14 +4,20 @@ public static partial class ColorThemeManager
 {
     public enum ThemeChoice
     {
-        Dark,
         Light,
+        Dark,
+        Stealth,
+        GrayBlob,
         Ocean,
         Sunset,
+        Earth,
         Rose,
         Winter,
-        HighContrast,
+        Frost,
         Halloween,
         MutedHalloween,
+        Neon,
+        Cyber,
+        HighContrast,
     }
 }

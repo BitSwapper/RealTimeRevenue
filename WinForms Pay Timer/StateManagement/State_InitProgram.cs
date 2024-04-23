@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using RealTime_Revenue.ColorManagement;
+using RealTime_Revenue.Extensions;
 using RealTime_Revenue.Misc;
 using static RealTime_Revenue.ColorManagement.ColorThemeManager;
 
@@ -10,7 +11,9 @@ public class State_InitProgram : BaseState<StateManager>
     public override void EnterState(StateManager stateManager)
     {
         stateManager.Form.TimerUpdateTimerText.Start();
-        stateManager.Form.ThemeComboBox.DataSource = Enum.GetValues(typeof(ThemeChoice));
+        stateManager.Form.ThemeComboBox.DataSource = Enum.GetValues(typeof(ThemeChoice))
+            .Cast<ThemeChoice>().Select(value => value.ToSentenceCase()).ToList();
+
         stateManager.Form.ThemeComboBox.SelectedIndex = Properties.Settings.Default.ColorThemeOption;
         InitLviCurrentJobs(stateManager);
         InitLviCompletedJobs(stateManager);
