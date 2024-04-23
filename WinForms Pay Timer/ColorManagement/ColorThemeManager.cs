@@ -33,8 +33,6 @@ public static partial class ColorThemeManager
         _ => ColorThemePalette.Dark,
     };
 
-
-
     static void ChangeColorThemeOfAllControls(Control control, ColorTheme theme)
     {
         foreach(Control childControl in control.Controls)

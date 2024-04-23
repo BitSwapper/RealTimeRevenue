@@ -10,6 +10,7 @@ public class State_Started : BaseState<StateManager>
         stateManager.Form.TimeKeeper.TimerStartTime = DateTime.Now;
         ToggleButtonStates(stateManager);
         SetupCurrentTimecardIfFirstEntry(stateManager);
+        stateManager.Form.ListViewCurrentJobTimeCards.Scrollable = false;
 
 
         static void ToggleButtonStates(StateManager stateManager)
@@ -33,7 +34,10 @@ public class State_Started : BaseState<StateManager>
     }
 
 
-    public override void ExitState(StateManager stateManager) { }
+    public override void ExitState(StateManager stateManager) 
+    {
+        stateManager.Form.ListViewCurrentJobTimeCards.Scrollable = true;
+    }
     public override void UpdateState(StateManager stateManager)
     {
         var totalEarnedThisJob = stateManager.Form.TimeKeeper.TimeCardsThisJob.Sum((t) => t.MoneyEarned) + stateManager.Form.TimeKeeper.CurrentJobTimeCard.HourlyRate * (decimal)stateManager.Form.TimeKeeper.ElapsedTime.TotalHours;

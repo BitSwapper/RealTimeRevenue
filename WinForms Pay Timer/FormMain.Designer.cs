@@ -46,6 +46,7 @@ partial class FormMain
         linkLabel1 = new LinkLabel();
         linkLabelDonate = new LinkLabel();
         label2 = new Label();
+        label3 = new Label();
         SuspendLayout();
         // 
         // buttonTimerStart
@@ -94,7 +95,7 @@ partial class FormMain
         // 
         labelTimerDisplay.AutoSize = true;
         labelTimerDisplay.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        labelTimerDisplay.Location = new Point(12, 6);
+        labelTimerDisplay.Location = new Point(13, 21);
         labelTimerDisplay.Name = "labelTimerDisplay";
         labelTimerDisplay.Size = new Size(104, 31);
         labelTimerDisplay.TabIndex = 7;
@@ -105,7 +106,7 @@ partial class FormMain
         // 
         listViewTimeCards.Location = new Point(12, 86);
         listViewTimeCards.Name = "listViewTimeCards";
-        listViewTimeCards.Size = new Size(475, 123);
+        listViewTimeCards.Size = new Size(475, 120);
         listViewTimeCards.TabIndex = 8;
         listViewTimeCards.UseCompatibleStateImageBehavior = false;
         // 
@@ -146,7 +147,7 @@ partial class FormMain
         labelMoneyEarned.AutoSize = true;
         labelMoneyEarned.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
         labelMoneyEarned.ForeColor = Color.Green;
-        labelMoneyEarned.Location = new Point(14, 50);
+        labelMoneyEarned.Location = new Point(13, 50);
         labelMoneyEarned.Name = "labelMoneyEarned";
         labelMoneyEarned.Size = new Size(67, 30);
         labelMoneyEarned.TabIndex = 11;
@@ -157,7 +158,7 @@ partial class FormMain
         // 
         listViewCompletedJobs.Location = new Point(12, 213);
         listViewCompletedJobs.Name = "listViewCompletedJobs";
-        listViewCompletedJobs.Size = new Size(475, 123);
+        listViewCompletedJobs.Size = new Size(475, 120);
         listViewCompletedJobs.TabIndex = 12;
         listViewCompletedJobs.UseCompatibleStateImageBehavior = false;
         // 
@@ -167,22 +168,23 @@ partial class FormMain
         labelMoneyGrandTotal.AutoSize = true;
         labelMoneyGrandTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
         labelMoneyGrandTotal.ForeColor = Color.Green;
-        labelMoneyGrandTotal.Location = new Point(402, 51);
+        labelMoneyGrandTotal.Location = new Point(13, 353);
         labelMoneyGrandTotal.Name = "labelMoneyGrandTotal";
         labelMoneyGrandTotal.RightToLeft = RightToLeft.No;
         labelMoneyGrandTotal.Size = new Size(67, 30);
         labelMoneyGrandTotal.TabIndex = 13;
         labelMoneyGrandTotal.Text = "$0.00";
-        labelMoneyGrandTotal.TextAlign = ContentAlignment.MiddleRight;
+        labelMoneyGrandTotal.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(402, 37);
+        label1.Location = new Point(13, 339);
         label1.Name = "label1";
         label1.Size = new Size(67, 15);
         label1.TabIndex = 14;
         label1.Text = "Grand Total";
+        label1.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // themeComboBox
         // 
@@ -200,7 +202,7 @@ partial class FormMain
         // 
         linkLabel1.AutoSize = true;
         linkLabel1.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabel1.Location = new Point(12, 339);
+        linkLabel1.Location = new Point(12, 527);
         linkLabel1.Name = "linkLabel1";
         linkLabel1.Size = new Size(43, 15);
         linkLabel1.TabIndex = 17;
@@ -212,7 +214,7 @@ partial class FormMain
         // 
         linkLabelDonate.AutoSize = true;
         linkLabelDonate.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabelDonate.Location = new Point(444, 339);
+        linkLabelDonate.Location = new Point(444, 527);
         linkLabelDonate.Name = "linkLabelDonate";
         linkLabelDonate.Size = new Size(45, 15);
         linkLabelDonate.TabIndex = 18;
@@ -223,17 +225,29 @@ partial class FormMain
         // label2
         // 
         label2.AutoSize = true;
-        label2.Location = new Point(19, 37);
+        label2.Location = new Point(13, 6);
         label2.Name = "label2";
         label2.Size = new Size(49, 15);
         label2.TabIndex = 19;
         label2.Text = "This Job";
         // 
+        // label3
+        // 
+        label3.AutoSize = true;
+        label3.Font = new Font("Segoe UI", 17.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        label3.Location = new Point(13, 383);
+        label3.Name = "label3";
+        label3.Size = new Size(104, 31);
+        label3.TabIndex = 20;
+        label3.Text = "00:00:00";
+        label3.TextAlign = ContentAlignment.MiddleLeft;
+        // 
         // FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(496, 358);
+        ClientSize = new Size(496, 551);
+        Controls.Add(label3);
         Controls.Add(label2);
         Controls.Add(linkLabelDonate);
         Controls.Add(linkLabel1);
@@ -276,4 +290,5 @@ partial class FormMain
     LinkLabel linkLabel1;
     private LinkLabel linkLabelDonate;
     private Label label2;
+    private Label label3;
 }
