@@ -30,6 +30,9 @@ public static partial class ColorThemeManager
         ThemeChoice.Neon => ColorThemePalette.Neon,
         ThemeChoice.Cyber => ColorThemePalette.Cyber,
         ThemeChoice.HighContrast => ColorThemePalette.HighContrast,
+        ThemeChoice.Midnight2 => ColorThemePalette.Midnight2,
+        ThemeChoice.Cyberpunk => ColorThemePalette.Cyberpunk,
+        ThemeChoice.EerieGlow => ColorThemePalette.EerieGlow,
         _ => ColorThemePalette.Dark,
     };
 

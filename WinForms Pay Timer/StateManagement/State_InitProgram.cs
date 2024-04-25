@@ -2,6 +2,7 @@
 using RealTime_Revenue.ColorManagement;
 using RealTime_Revenue.Extensions;
 using RealTime_Revenue.Misc;
+using RealTime_Revenue.Properties;
 using static RealTime_Revenue.ColorManagement.ColorThemeManager;
 
 namespace RealTime_Revenue.StateManagement;
@@ -14,7 +15,7 @@ public class State_InitProgram : BaseState<StateManager>
         stateManager.Form.ThemeComboBox.DataSource = Enum.GetValues(typeof(ThemeChoice))
             .Cast<ThemeChoice>().Select(value => value.ToSentenceCase()).ToList();
 
-        stateManager.Form.ThemeComboBox.SelectedIndex = Properties.Settings.Default.ColorThemeOption;
+        stateManager.Form.ThemeComboBox.SelectedIndex = Settings.Default.ColorThemeOption;
         InitLviCurrentJobs(stateManager);
         InitLviCompletedJobs(stateManager);
         EnableDoubleBufferingOnLvis(stateManager);

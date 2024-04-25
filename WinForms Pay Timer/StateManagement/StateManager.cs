@@ -11,11 +11,11 @@ public class StateManager
 
     Dictionary<States, BaseState<StateManager>> concreteStates = new()
     {
-        {States.Started, new State_Started() },
         {States.InitialzingProgram, new State_InitProgram() },
         {States.InitNewJob, new State_InitNewJob() },
-        {States.Paused, new State_Paused() },
         {States.Completed, new State_Completed() },
+        {States.Started, new State_Started() },
+        {States.Paused, new State_Paused() },
         {States.Reset, new State_Reset()}
     };
 

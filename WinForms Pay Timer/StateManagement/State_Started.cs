@@ -7,7 +7,8 @@ public class State_Started : BaseState<StateManager>
 {
     public override void EnterState(StateManager stateManager)
     {
-        stateManager.Form.TimeKeeper.TimerStartTime = DateTime.Now;
+        var timeKeeper = stateManager.Form.TimeKeeper;
+        timeKeeper.TimerStartTime = DateTime.Now;
         ToggleButtonStates(stateManager);
         SetupCurrentTimecardIfFirstEntry(stateManager);
         stateManager.Form.ListViewCurrentJobTimeCards.Scrollable = false;
@@ -22,13 +23,13 @@ public class State_Started : BaseState<StateManager>
             stateManager.Form.ButtonTimerReset.Enabled = true;
         }
 
-        static void SetupCurrentTimecardIfFirstEntry(StateManager stateManager)
+        void SetupCurrentTimecardIfFirstEntry(StateManager stateManager)
         {
             if(stateManager.Form.ListViewCurrentJobTimeCards.Items.Count == 0)
             {
-                stateManager.Form.TimeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
-                stateManager.Form.TimeKeeper.CurrentJobTimeCard.TimeSpentWorking = stateManager.Form.TimeKeeper.ElapsedTime;
-                ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, stateManager.Form.TimeKeeper);
+                timeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
+                timeKeeper.CurrentJobTimeCard.TimeSpentWorking = timeKeeper.ElapsedTime;
+                ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, timeKeeper);
             }
         }
     }
@@ -37,12 +38,16 @@ public class State_Started : BaseState<StateManager>
 
     public override void UpdateState(StateManager stateManager)
     {
-        var totalEarnedThisJob = stateManager.Form.TimeKeeper.TimeCardsThisJob.Sum((t) => t.MoneyEarned) + stateManager.Form.TimeKeeper.CurrentJobTimeCard.HourlyRate * (decimal)stateManager.Form.TimeKeeper.ElapsedTime.TotalHours;
-        var totalEarnedOnCompletedJobs = stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned);
+        var timeKeeper = stateManager.Form.TimeKeeper;
+
+        var totalEarnedThisJob = timeKeeper.TimeCardsThisJob.Sum((t) => t.MoneyEarned) + timeKeeper.CurrentJobTimeCard.HourlyRate * (decimal)timeKeeper.ElapsedTime.TotalHours;
+        var totalEarnedOnCompletedJobs = timeKeeper.TimeCardsCompletedJobs.Sum((t) => t.MoneyEarned);
         var GrandTotal = totalEarnedThisJob + totalEarnedOnCompletedJobs;
-        TimeSpan timeSpentOnCompletedJobs = stateManager.Form.TimeKeeper.TimeCardsCompletedJobs.Aggregate(new TimeSpan(), (total, job) => total + job.TimeSpentWorking);
+
+        TimeSpan timeSpentOnCompletedJobs = timeKeeper.TimeCardsCompletedJobs.Aggregate(new TimeSpan(), (total, job) => total + job.TimeSpentWorking);
+        
         UpdateTextLabels(stateManager, totalEarnedThisJob, GrandTotal, timeSpentOnCompletedJobs);
-        ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, stateManager.Form.TimeKeeper);
+        ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, timeKeeper);
 
         static void UpdateTextLabels(StateManager stateManager, decimal totalEarnedThisJob, decimal GrandTotal, TimeSpan timeSpentOnCompletedJobs)
         {

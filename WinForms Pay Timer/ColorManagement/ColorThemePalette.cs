@@ -208,4 +208,43 @@ public static class ColorThemePalette
         TimerColor = Color.Yellow,
         MoneyFontColor = Color.Magenta
     };
+
+    public static ColorTheme Midnight2 { get; } = new()
+    {
+        UseDarkMode = true,
+        ColorBg = Color.FromArgb(255, 0, 35, 64), // A deep midnight blue
+        FontColor = Color.FromArgb(255, 189, 195, 199),  // A light gray
+        FontColorListViewCaption = Color.FromArgb(255, 219, 112, 147), // A pale pinkish-red
+        ButtonColor = Color.FromArgb(255, 55, 57, 70),
+        ButtonFontColor = Color.White,
+        DisabledButtonColor = Color.FromArgb(255, 30, 30, 40),
+        TimerColor = Color.FromArgb(255, 128, 0, 128), // Purple
+        MoneyFontColor = Color.FromArgb(255, 197, 225, 165), // A light green-yellow
+    };
+
+    public static ColorTheme Cyberpunk { get; } = new()
+    {
+        UseDarkMode = true,
+        ColorBg = Color.FromArgb(255, 22, 28, 35), // Darker background for cyberpunk
+        FontColor = Color.FromArgb(255, 0, 255, 0), // Bright green text
+        FontColorListViewCaption = Color.LimeGreen,
+        ButtonColor = Color.FromArgb(255, 80, 80, 80),  // Dark gray button
+        ButtonFontColor = Color.Aquamarine, // Light blue button text
+        DisabledButtonColor = Color.FromArgb(255, 50, 50, 50),
+        TimerColor = Color.Yellow, // Bright yellow timer
+        MoneyFontColor = Color.Fuchsia, // Pink money  
+    };
+
+    public static ColorTheme EerieGlow { get; } = new()
+    {
+        UseDarkMode = true,
+        ColorBg = Color.FromArgb(255, 30, 30, 50), // Dark blue-gray background
+        FontColor = Color.GhostWhite,
+        FontColorListViewCaption = Color.FromArgb(255, 125, 255, 255), // Light blue-green
+        ButtonColor = Color.FromArgb(255, 60, 60, 80),
+        ButtonFontColor = Color.Silver,
+        DisabledButtonColor = Color.FromArgb(255, 40, 40, 60),
+        TimerColor = Color.FromArgb(255, 255, 140, 0), // Orange-yellow
+        MoneyFontColor = Color.LawnGreen, // Bright green money
+    };
 }
