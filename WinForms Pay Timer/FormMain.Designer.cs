@@ -168,7 +168,7 @@ partial class FormMain
         labelMoneyGrandTotal.AutoSize = true;
         labelMoneyGrandTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
         labelMoneyGrandTotal.ForeColor = Color.Green;
-        labelMoneyGrandTotal.Location = new Point(13, 386);
+        labelMoneyGrandTotal.Location = new Point(400, 355);
         labelMoneyGrandTotal.Name = "labelMoneyGrandTotal";
         labelMoneyGrandTotal.RightToLeft = RightToLeft.No;
         labelMoneyGrandTotal.Size = new Size(67, 30);
@@ -202,7 +202,7 @@ partial class FormMain
         // 
         linkLabel1.AutoSize = true;
         linkLabel1.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabel1.Location = new Point(12, 419);
+        linkLabel1.Location = new Point(12, 390);
         linkLabel1.Name = "linkLabel1";
         linkLabel1.Size = new Size(43, 15);
         linkLabel1.TabIndex = 17;
@@ -214,7 +214,7 @@ partial class FormMain
         // 
         linkLabelDonate.AutoSize = true;
         linkLabelDonate.LinkColor = Color.FromArgb(128, 128, 255);
-        linkLabelDonate.Location = new Point(444, 419);
+        linkLabelDonate.Location = new Point(444, 390);
         linkLabelDonate.Name = "linkLabelDonate";
         linkLabelDonate.Size = new Size(45, 15);
         linkLabelDonate.TabIndex = 18;
@@ -246,7 +246,7 @@ partial class FormMain
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(496, 437);
+        ClientSize = new Size(496, 412);
         Controls.Add(labelTimerDisplayGrandTotal);
         Controls.Add(labelCurJobName);
         Controls.Add(linkLabelDonate);
@@ -267,7 +267,7 @@ partial class FormMain
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         Name = "FormMain";
-        Text = "RealTime Revenue 1.1.0";
+        Text = "RealTime Revenue 1.1.1";
         Load += FormMain_Load;
         ResumeLayout(false);
         PerformLayout();

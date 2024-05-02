@@ -9,6 +9,10 @@ public class State_Started : BaseState<StateManager>
     {
         var timeKeeper = stateManager.Form.TimeKeeper;
         timeKeeper.TimerStartTime = DateTime.Now;
+
+        if(timeKeeper.CurrentJobTimeCard != null)
+            timeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
+
         ToggleButtonStates(stateManager);
         SetupCurrentTimecardIfFirstEntry(stateManager);
         stateManager.Form.ListViewCurrentJobTimeCards.Scrollable = false;
@@ -27,7 +31,6 @@ public class State_Started : BaseState<StateManager>
         {
             if(stateManager.Form.ListViewCurrentJobTimeCards.Items.Count == 0)
             {
-                timeKeeper.CurrentJobTimeCard.StartTime = DateTime.Now;
                 timeKeeper.CurrentJobTimeCard.TimeSpentWorking = timeKeeper.ElapsedTime;
                 ListViewRefresher.RefreshListView(stateManager.Form.ListViewCurrentJobTimeCards, true, timeKeeper);
             }
