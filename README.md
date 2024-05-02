@@ -1,14 +1,20 @@
 [Download]
-[Windows_1_01.zip](https://github.com/BitSwapper/RealTimeRevenue/files/15055231/1_01.zip)
+[Windows 1_1_1.zip](https://github.com/BitSwapper/RealTimeRevenue/files/15182867/Windows.1_1_1.zip)
 
-![aa](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/f83af76a-6c90-4e2c-8e4f-4655fdf1bf81)
-Live calculation of earnings
 
-![bb](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/d7400302-bed9-431c-a889-9ceea3fe0156)
+
+![1](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/16b79cef-a6e0-4c13-af53-7cb7e07f5f1b)
+Live calculation of earnings!
+
+
+![2](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/8acb740d-cc3b-460c-843d-98b9fbdd6249)
 Tracks break times (when paused)
 
-![ab](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/79a7dc22-e48c-4e3c-ac93-e221c1e8693e)
-Ez Job Completed / New Job Started
+![3](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/6ef2fd93-a4c8-497b-9028-bfaf252101e8)
+One Job Completed / New Job Started
+
+![4](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/66a4f66c-92d2-4315-a07f-e2bdc3f4734e)
+Back to Original Job
 
 ![ac](https://github.com/BitSwapper/RealTimeRevenue/assets/119023047/bfea418a-7c8c-44c2-a130-7946c41e10a1)
 Theme Choices
